@@ -1,0 +1,122 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllPaginatedEquipmentParkObligations(
+        filter: EquipmentParkObligationFilterInput
+        pagination: PaginationInput
+    ): EquipmentParkObligationPaginationResultType
+    findOneEquipmentParkObligation(id: Int!): EquipmentParkObligation
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createEquipmentParkObligation(
+        data: CreateEquipmentParkObligationInput
+    ): EquipmentParkObligation
+    updateEquipmentParkObligation(
+        data: UpdateEquipmentParkObligationInput
+    ): EquipmentParkObligation
+    deleteEquipmentParkObligation(
+        id: Int!
+        cascade: Boolean
+        equipmentParkId: Int
+        categoryId: Int
+    ): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentParkObligation {
+    id: Int
+
+    type: ObligationTypeEnum!
+
+    label: ObligationType!
+
+    periodicity: Float!
+
+    triggerUnit: ObligationTriggerUnitEnum!
+
+    maintenanceDuration: Float
+
+    documentRequired: Boolean!
+
+    lastControlDate: Date
+
+    nextControlDate: Date
+
+    lastControlCounter: Float
+
+    nextControlCounter: Float
+
+    status: MaintenanceStatusEnum!
+}
+
+type EquipmentParkObligationPaginationResultType {
+    result: [EquipmentParkObligation!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+
+input CreateEquipmentParkObligationInput {
+    equipmentPark: Int
+
+    category: Int
+
+    type: ObligationTypeEnum!
+
+    label: Int!
+
+    periodicity: Float!
+
+    triggerUnit: ObligationTriggerUnitEnum!
+
+    maintenanceDuration: Float
+
+    documentRequired: Boolean!
+}
+
+input UpdateEquipmentParkObligationInput {
+    id: Int!
+
+    type: ObligationTypeEnum
+
+    label: Int
+
+    periodicity: Float
+
+    triggerUnit: ObligationTriggerUnitEnum
+
+    maintenanceDuration: Float
+
+    documentRequired: Boolean
+
+    status: MaintenanceStatusEnum
+}
+
+input EquipmentParkObligationFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    equipmentParkId: Int
+    equipmentParkIds: [Int!]
+    categoryId: Int
+    categoryIds: [Int!]
+}
+
+############# INPUT #############
+
+enum ObligationTriggerUnitEnum {
+    Counter
+    Date
+}
+
+enum ObligationTypeEnum {
+    Legal
+    Internal
+}

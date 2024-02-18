@@ -1,0 +1,65 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllContractComments(
+        filter: ContractCommentFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): ContractCommentPaginationResultType
+    findOneContractComment(id: Int!): ContractCommentType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createContractComment(data: ContractCommentCreateInput): ContractCommentType
+    updateContractComment(data: ContractCommentUpdateInput): ContractCommentType
+    removeContractComment(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type ContractCommentType {
+    id: Int
+    comment: String
+    contract: ContractType
+    employee: Employee
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type ContractCommentPaginationResultType {
+    result: [ContractCommentType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input ContractCommentFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    employeeId: Int
+    employeeIds: [Int!]
+    contractId: Int
+    contractIds: [Int!]
+}
+
+input ContractCommentCreateInput {
+    comment: String
+    contract: Int
+}
+
+input ContractCommentUpdateInput {
+    id: Int
+    comment: String
+    contract: Int
+    active: Boolean
+}
+############# INPUT #############

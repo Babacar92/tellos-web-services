@@ -1,0 +1,57 @@
+type Mutation {
+    createSupplierLanguageCode(data: SupplierLanguageCodeCreateInput!): SupplierLanguageCodeEntity!
+    updateSupplierLanguageCode(data: SupplierLanguageCodeUpdateInput!): SupplierLanguageCodeEntity!
+    removeSupplierLanguageCode(data: RemoveItemInput): Boolean!
+}
+
+type Query {
+    findOneSupplierLanguageCode(id: Int!): SupplierLanguageCodeEntity
+    findAllSupplierLanguageCodes(filter: SupplierLanguageCodeFilterArgs, sort: JSON, pagination: PaginationInput): SupplierLanguageCodePaginationResultType
+}
+
+type SupplierLanguageCodeEntity {
+    id: Int!
+    code: String
+    name: String
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type SupplierLanguageCodePaginationResultType {
+    result: [SupplierLanguageCodeEntity!]
+    pagination: PaginationType
+}
+
+input SupplierLanguageCodeCreateInput {
+    code: String!
+    name: String!
+}
+
+input SupplierLanguageCodeUpdateInput {
+    id: Int!
+    code: String
+    name: String
+}
+
+input SupplierLanguageCodeRemoveInput {
+    id: Int!
+    type: String
+}
+
+input SupplierLanguageCodeFilterArgs {
+    code: String
+    name: String
+    active: Boolean
+}
+
+type SupplierLanguageCodeLanguageCodeEntity {
+    id: Int!
+}
+
+type SupplierLanguageCodesResponse {
+    result: [SupplierLanguageCodeEntity!]!
+    pagination: PaginationType
+}

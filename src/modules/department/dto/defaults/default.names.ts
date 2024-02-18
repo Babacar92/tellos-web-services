@@ -1,0 +1,17 @@
+export const DEPARTMENT_DEFAULT_NAMES = [
+    "ComEx",
+    "Gestion",
+    "RH",
+    "Achat",
+    "Administratif",
+    "Parc matériel",
+    "Mécanique",
+    "QSE",
+    "Commerce",
+    "Chiffrage",
+    "Ingénierie",
+    "Juridique",
+    "Communication",
+    "Finance",
+    "Chantier",
+];

@@ -1,0 +1,52 @@
+scalar Date
+############# QUERY #############
+type Query {
+    findOneEquipmentParkPreparatorySheet(
+        equipmentParkId: Int!
+    ): EquipmentParkPreparatorySheet
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createEquipmentParkPreparatorySheet(
+        data: CreateEquipmentParkPreparatorySheetInput
+    ): EquipmentParkPreparatorySheet
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentParkPreparatorySheet {
+    id: Int!
+    equipmentPark: EquipmentPark!
+    dieselCardReturned: Boolean
+    dieselCardReturnedTo: Employee
+    chipRemovedAndReturned: Boolean!
+    chipRemovedAndReturnedTo: Employee
+    originalRegistrationDocument: Boolean
+    duplicateKeys: Boolean
+    insuranceWithdrawn: Boolean
+    vehicleEmpty: Boolean!
+    isMarkingRemoved: Boolean!
+    starts: Boolean!
+    RollingVehicule: Boolean!
+    mainWorks: String
+}
+
+input CreateEquipmentParkPreparatorySheetInput {
+    equipmentPark: Int!
+    dieselCardReturned: Boolean
+    dieselCardReturnedTo: Int
+    chipRemovedAndReturned: Boolean!
+    chipRemovedAndReturnedTo: Int
+    originalRegistrationDocument: Boolean
+    duplicateKeys: Boolean
+    insuranceWithdrawn: Boolean
+    vehicleEmpty: Boolean!
+    isMarkingRemoved: Boolean!
+    starts: Boolean!
+    RollingVehicule: Boolean!
+    mainWorks: String
+}
+
+############# INPUT #############

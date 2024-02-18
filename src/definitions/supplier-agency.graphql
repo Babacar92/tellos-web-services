@@ -1,0 +1,91 @@
+scalar Date
+scalar JSON
+scalar Upload
+
+############# QUERY #############
+type Query {
+    findAllSupplierAgencies(
+        filter: SupplierAgencyFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): SupplierAgenciesResponse
+    findOneSupplierAgency(id: Int!): SupplierAgency
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createSupplierAgency(data: SupplierAgencyCreateInput): SupplierAgency
+    updateSupplierAgency(data: SupplierAgencyUpdateInput): SupplierAgency
+    removeSupplierAgency(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type SupplierAgency {
+    id: Int
+    supplier: Supplier
+    name: String
+    address: String
+    addressBis: String
+    postcode: String
+    city: String
+    country: String
+    phone: String
+    fax: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type SupplierAgenciesResponse {
+    result: [SupplierAgency!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input SupplierAgencyFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    supplier: Int
+    name: String
+    address: String
+    addressBis: String
+    postcode: String
+    city: String
+    country: String
+    phone: String
+    fax: String
+    active: Boolean
+}
+
+input SupplierAgencyCreateInput {
+    supplier: Int!
+    name: String!
+    address: String!
+    addressBis: String
+    postcode: String!
+    city: String!
+    country: String!
+    phone: String
+    fax: String
+}
+
+input SupplierAgencyUpdateInput {
+    id: Int!
+    supplier: Int
+    name: String
+    address: String
+    addressBis: String
+    postcode: String
+    city: String
+    country: String
+    phone: String
+    fax: String
+}
+############# INPUT #############

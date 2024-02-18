@@ -1,0 +1,142 @@
+scalar Date
+
+############# QUERY #############
+type Query {
+    findAllLogins(filter: LoginFilterInput, sort: JSON, pagination: PaginationInput): LoginPaginationResultType
+    findOneLogin(id: Int!): LoginEntity
+    findLogged: LoginEntity
+    loginUser(login: UserLoginInput): UserConnectedResponseType
+    recoverPasswordUser(email: String): RecoverPasswordResponse
+    getUsersLogs(
+        filter: ActionLogFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): UserActionLogPaginationResultType
+    findFormPermissions(filter: PermissionsFormFilterInput): JSON
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createLogin(data: LoginCreateInput): LoginEntity
+    updateLogin(data: LoginUpdateInput): LoginEntity
+    removeLogin(data: RemoveItemInput): Boolean
+    resetPasswordUser(request: UserResetPasswordInput): ResetPasswordResponse
+    saveLoginPermissions(data: LoginSavePermissionsInput): LoginEntity
+    copyPermissionsFromOtherLogin(data: CopyPermissionsFromOtherLoginInput): JSON
+}
+############# MUTATION #############
+
+############# TYPE #############
+type LoginEntity {
+    id: Int
+    employee: Employee
+    firstname: String
+    lastname: String
+    email: String
+    username: String
+    isExternal: Boolean
+    active: Boolean
+    password: String
+    confirmedAt: Date
+    lastLogin: Date
+    token: [TokenType!]
+    notifications: [NotificationLoginEntity!]
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type LoginPaginationResultType {
+    result: [LoginEntity!]
+    pagination: PaginationType
+}
+
+type UserConnectedResponseType {
+    accessToken: String
+    permissions: [String!]
+}
+
+type RecoverPasswordResponse {
+    sent: Boolean
+    error: String
+}
+
+type ResetPasswordResponse {
+    success: Boolean
+    error: String
+}
+
+type UserActionLogPaginationResultType {
+    result: [ActionLogType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input LoginFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    username: String
+    firstname: String
+    lastname: String
+    emailPro: String
+    notIds: [Int!]
+    hasPermissions: Boolean
+}
+
+input LoginCreateInput {
+    employee: Int
+    email: String
+    username: String
+    firstname: String
+    lastname: String
+    isExternal: Boolean
+    password: String
+    active: Boolean
+}
+
+input LoginUpdateInput {
+    id: Int
+    employee: Int
+    email: String
+    username: String
+    firstname: String
+    lastname: String
+    isExternal: Boolean
+    password: String
+    active: Boolean
+    confirmedAt: Date
+    lastLogin: Date
+}
+
+input UserResetPasswordInput {
+    token: String
+    password: String
+}
+
+input UserLoginInput {
+    username: String
+    password: String
+}
+
+input PermissionsFormFilterInput {
+    loginId: Int
+    entityId: Int
+}
+
+input LoginSavePermissionsInput {
+    loginId: Int
+    entityId: Int
+    permissionsIds: [Int!]
+}
+
+input CopyPermissionsFromOtherLoginInput {
+    fromLogin: Int
+    toLogin: Int
+    targetEntity: Int
+}
+############# INPUT #############

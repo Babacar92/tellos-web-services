@@ -1,0 +1,57 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllContractSections(filter:  ContractSectionFilterInput, sort: JSON, pagination: PaginationInput): ContractSectionPaginationResultType
+    findOneContractSection(id: Int!):  ContractSectionType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createContractSection(data:  ContractSectionCreateInput): ContractSectionType
+    updateContractSection(data:  ContractSectionUpdateInput):  ContractSectionType
+    removeContractSection(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type ContractSectionType {
+    id: Int
+    title: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type  ContractSectionPaginationResultType {
+    result: [ContractSectionType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input ContractSectionFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+}
+
+input  ContractSectionCreateInput {
+    title: String
+    active: Boolean
+}
+
+input  ContractSectionUpdateInput {
+    id: Int
+    title: String
+    active: Boolean
+}
+############# INPUT #############

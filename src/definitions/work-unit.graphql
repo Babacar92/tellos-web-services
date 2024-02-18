@@ -1,0 +1,62 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllWorkUnits(filter: WorkUnitFilterInput, sort: JSON, pagination: PaginationInput): WorkUnitPaginationResultType
+    findOneWorkUnit(id: Int!): WorkUnitType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createWorkUnit(data: WorkUnitCreateInput): WorkUnitType
+    updateWorkUnit(data: WorkUnitUpdateInput): WorkUnitType
+    removeWorkUnit(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type WorkUnitType {
+    id: Int
+    divisionFactor: Int
+    title: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type WorkUnitPaginationResultType {
+    result: [WorkUnitType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input WorkUnitFilterInput {
+    id: Int
+    ids: [Int!]
+    divisionFactor: Int
+    divisionFactors: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+}
+
+input WorkUnitCreateInput {
+    title: String
+    divisionFactor: Int
+    active: Boolean
+}
+
+input WorkUnitUpdateInput {
+    id: Int
+    title: String
+    divisionFactor: Int
+    active: Boolean
+}
+############# INPUT #############

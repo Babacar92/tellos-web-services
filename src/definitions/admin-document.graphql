@@ -1,0 +1,64 @@
+scalar Date
+scalar JSON
+scalar Upload
+
+############# QUERY #############
+type Query {
+    findAllAdminDocuments(filter: AdminDocumentFilterInput, sort: JSON, pagination: PaginationInput): AdminDocumentPaginationResultType
+    findOneAdminDocument(id: Int!): AdminDocumentType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createAdminDocument(data: AdminDocumentCreateInput): AdminDocumentType
+    updateAdminDocument(data: AdminDocumentUpdateInput): AdminDocumentType
+    removeAdminDocument(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type AdminDocumentType {
+    id: Int
+    file: UploadType
+    category: DocumentCategoryType
+    title: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type AdminDocumentPaginationResultType {
+    result: [AdminDocumentType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input AdminDocumentFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    categories: [Int!]
+}
+
+input AdminDocumentCreateInput {
+    file: Upload
+    category: Int
+    title: String
+    active: Boolean
+}
+
+input AdminDocumentUpdateInput {
+    id: Int
+    file: Upload
+    category: Int
+    title: String
+    active: Boolean
+}
+############# INPUT #############

@@ -1,0 +1,42 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllPermissions(filter: PermissionFilterInput, sort: JSON, pagination: PaginationInput): PermissionPaginationResultType
+    findOnePermission(id: Int!): PermissionType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation
+############# MUTATION #############
+
+############# TYPE #############
+type PermissionType {
+    id: Int
+    name: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type PermissionPaginationResultType {
+    result: [PermissionType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input PermissionFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    name: String
+    names: [String!]
+}
+############# INPUT #############

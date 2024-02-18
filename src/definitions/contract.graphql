@@ -1,0 +1,76 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllContracts(
+        filter: ContractFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): ContractPaginationResultPath
+    findOneContract(id: Int!): ContractType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createContract(data: ContractCreateInput): ContractType
+    updateContract(data: ContractUpdateInput): ContractType
+    removeContract(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type ContractType {
+    id: Int
+    text: String
+    status: String
+    employee: Employee
+    type: String
+    filename: String
+    fullpath: String
+    shortpath: String
+    comments: [ContractCommentType!]
+    active: Boolean
+    isGenerate: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type ContractPaginationResultPath {
+    result: [ContractType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input ContractFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    employeeId: Int
+    employeeIds: [Int!]
+    status: String
+}
+
+input ContractCreateInput {
+    employee: Int
+    type: String
+    text: String
+    status: String
+    active: Boolean
+}
+
+input ContractUpdateInput {
+    id: Int
+    employee: Int
+    type: String
+    text: String
+    status: String
+    active: Boolean
+}
+
+############# INPUT #############

@@ -1,0 +1,32 @@
+scalar Date
+
+################## Query ##################
+# type Query
+################## Query ##################
+
+################## Mutation ##################
+# type Mutation
+################## Mutation ##################
+
+################## Type ##################
+type PaginationType {
+    page: Int
+    totalPage: Int
+    total: Int
+    hasNext: Boolean
+    hasPrevious: Boolean
+    limit: Int
+}
+################## Type ##################
+
+################## Input ##################
+input PaginationInput {
+    page: Int
+    limit: Int
+}
+
+input PaginationOrderByType {
+    column: String
+    order: String
+}
+################## Input ##################

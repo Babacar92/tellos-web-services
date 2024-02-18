@@ -1,0 +1,57 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllBusinessDocumentTypes(filter: BusinessDocumentTypeFilterInput, sort: JSON, pagination: PaginationInput): BusinessDocumentTypePaginationResultType
+    findOneBusinessDocumentType(id: Int!): BusinessDocumentTypeType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createBusinessDocumentType(data: BusinessDocumentTypeCreateInput): BusinessDocumentTypeType
+    updateBusinessDocumentType(data: BusinessDocumentTypeUpdateInput): BusinessDocumentTypeType
+    removeBusinessDocumentType(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type BusinessDocumentTypeType {
+    id: Int
+    title: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type BusinessDocumentTypePaginationResultType {
+    result: [BusinessDocumentTypeType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input BusinessDocumentTypeFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+}
+
+input BusinessDocumentTypeCreateInput {
+    title: String
+    active: Boolean
+}
+
+input BusinessDocumentTypeUpdateInput {
+    id: Int
+    title: String
+    active: Boolean
+}
+############# INPUT #############

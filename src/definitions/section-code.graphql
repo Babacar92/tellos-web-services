@@ -1,0 +1,108 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllSectionCodes(filter: SectionCodeFilterInput, sort: JSON, pagination: PaginationInput): SectionCodePaginationResultType
+    findOneSectionCode(id: Int!): SectionCodeType
+    findAllSectionCodesForWorkforceRate(filter: SectionCodeFilterForWorkforceRateInput, sort: JSON, pagination: PaginationInput): SectionCodeForWorkforceRatePaginationResultType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createSectionCode(data: SectionCodeCreateInput): SectionCodeType
+    updateSectionCode(data: SectionCodeUpdateInput): SectionCodeType
+    removeSectionCode(data: RemoveItemInput): Boolean
+    removeExpensePostInSectionCode(id: Int!): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type SectionCodeType {
+    id: Int
+    code: String
+    designation: String
+    inventoryChangeAccount: String
+    expensePost: ExpensePostType
+    purchaseAccounts: [PurchaseAccountType!]
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type SectionCodeForWorkforceRateType {
+    id: Int
+    code: String
+    designation: String
+    inventoryChangeAccount: String
+    expensePost: ExpensePostType
+    purchaseAccounts: [PurchaseAccountType!]
+    workforceRates: [WorkforceRateType]
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type SectionCodePaginationResultType {
+    result: [SectionCodeType!]
+    pagination: PaginationType
+}
+
+type SectionCodeForWorkforceRatePaginationResultType {
+    result: [SectionCodeForWorkforceRateType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input SectionCodeFilterInput {
+    id: Int
+    ids:[Int!]
+    search:String
+    expensePostId:Int
+    expensePostIds:[Int!]
+    code:String
+    codes:[String!]
+    designation: String
+    designations:[String!]
+    hasNotExpensePost: Boolean
+    notIds: [Int!]
+}
+
+input SectionCodeFilterForWorkforceRateInput {
+    id: Int
+    ids:[Int!]
+    search:String
+    code:String
+    codes:[String!]
+    designation: String
+    designations:[String!]
+    entity: Int
+}
+
+input SectionCodeCreateInput {
+    code: String
+    designation: String
+    inventoryChangeAccount: String
+    purchaseAccounts: String
+    expensePost: Int
+}
+
+input SectionCodeUpdateInput {
+    id: Int
+    code: String
+    designation: String
+    inventoryChangeAccount: String
+    purchaseAccounts: String
+    expensePost: Int
+    active: Boolean
+}
+############# INPUT #############

@@ -1,0 +1,57 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllContractApprentices(filter: ContractApprenticeFilterInput, sort: JSON, pagination: PaginationInput): ContractApprenticePaginationResultType
+    findOneContractApprentice(id: Int!):  ContractApprenticeType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createContractApprentice(data: ContractApprenticeCreateInput): ContractApprenticeType
+    updateContractApprentice(data: ContractApprenticeUpdateInput):  ContractApprenticeType
+    removeContractApprentice(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type ContractApprenticeType {
+    id: Int
+    title: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type ContractApprenticePaginationResultType {
+    result: [ContractApprenticeType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input ContractApprenticeFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+}
+
+input  ContractApprenticeCreateInput {
+    title: String
+    active: Boolean
+}
+
+input ContractApprenticeUpdateInput {
+    id: Int
+    title: String
+    active: Boolean
+}
+############# INPUT #############

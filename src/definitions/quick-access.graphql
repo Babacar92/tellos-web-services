@@ -1,0 +1,74 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllQuickAccess(
+        filter: QuickAccessFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): QuickAccessPaginationResultType
+    findOneQuickAccess(id: Int!): QuickAccessType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createQuickAccess(data: QuickAccessCreateInput): QuickAccessType
+    updateQuickAccess(data: QuickAccessUpdateInput): QuickAccessType
+    removeQuickAccess(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type QuickAccessType {
+    id: Int
+    employee: Employee
+    label: String
+    link: String
+    color: String
+    icon: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type QuickAccessPaginationResultType {
+    result: [QuickAccessType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input QuickAccessFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    label: String
+    labels: [String!]
+    link: String
+    links: [String!]
+    color: String
+    colors: [String!]
+}
+
+input QuickAccessCreateInput {
+    label: String
+    link: String
+    color: String
+    icon: String
+    active: Boolean
+}
+
+input QuickAccessUpdateInput {
+    id: Int
+    label: String
+    link: String
+    color: String
+    icon: String
+    active: Boolean
+}
+############# INPUT #############

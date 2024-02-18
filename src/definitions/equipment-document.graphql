@@ -1,0 +1,83 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllEquipmentDocuments(
+        filter: EquipmentDocumentFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EquipmentDocumentPaginationResultType
+    findOneEquipmentDocument(id: Int!): EquipmentDocumentType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createEquipmentDocument(
+        data: EquipmentDocumentCreateInput
+    ): EquipmentDocumentType
+    updateEquipmentDocument(
+        data: EquipmentDocumentUpdateInput
+    ): EquipmentDocumentType
+    removeEquipmentDocument(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentDocumentType {
+    id: Int
+    title: String
+    description: String
+    employee: Employee
+    documentType: DocumentTypeType
+    startDate: Date
+    endDate: Date
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type EquipmentDocumentPaginationResultType {
+    result: [EquipmentDocumentType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input EquipmentDocumentFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    startDate: Date
+    endDate: Date
+    employeeId: Int
+    employeeIds: [Int!]
+    documentTypeId: Int
+    documentTypeIds: [Int!]
+}
+
+input EquipmentDocumentCreateInput {
+    employee: Int
+    documentType: Int
+    title: String
+    description: String
+    startDate: Date
+    endDate: Date
+    active: Boolean
+}
+
+input EquipmentDocumentUpdateInput {
+    id: Int
+    employee: Int
+    documentType: Int
+    title: String
+    description: String
+    startDate: Date
+    endDate: Date
+    active: Boolean
+}
+############# INPUT #############

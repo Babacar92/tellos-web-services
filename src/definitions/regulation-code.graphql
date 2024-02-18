@@ -1,0 +1,75 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllRegulationCodes(filter: RegulationCodeFilterInput, sort: JSON, pagination: PaginationInput): RegulationCodePaginationResultType
+    findOneRegulationCode(id: Int!): RegulationCodeType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createRegulationCode(data: RegulationCodeCreateInput): RegulationCodeType
+    updateRegulationCode(data: RegulationCodeUpdateInput): RegulationCodeType
+    removeRegulationCode(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type RegulationCodeType {
+    id: Int
+    customers: [CustomerType!]
+    code: String
+    title: String
+    immediateDays: Int
+    specificity: Boolean
+    paymentDays: Int
+    additionnalDays: Int
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type RegulationCodePaginationResultType {
+    result: [RegulationCodeType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input RegulationCodeFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+    code: String
+    codes: [String!]
+}
+
+input RegulationCodeCreateInput {
+    code: String
+    title: String
+    immediateDays: Int
+    specificity: Boolean
+    paymentDays: Int
+    additionnalDays: Int
+    active: Boolean
+}
+
+input RegulationCodeUpdateInput {
+    id: Int
+    code: String
+    title: String
+    immediateDays: Int
+    specificity: Boolean
+    paymentDays: Int
+    additionnalDays: Int
+    active: Boolean
+}
+############# INPUT #############

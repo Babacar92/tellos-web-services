@@ -1,0 +1,138 @@
+import { TransactionnalMigration } from '@/libs/databases/decorators/classes/TransactionnalMigration';
+import { MigrationInterface, QueryRunner } from 'typeorm';
+
+@TransactionnalMigration()
+export class AdaptActiveFieldOnAllEntities1697190583608 implements MigrationInterface {
+    name = 'AdaptActiveFieldOnAllEntities1697190583608'
+
+    public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`ALTER TABLE "tellos_activity" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_upload" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_leave_distribution" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_leave_period" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_career_path" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_medical_visists" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_theoretical_hours_of_use_entity" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_administrative_material" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_medium_size_centre" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_article_family" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_workforce_rate" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_section_code" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_good" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_work_entity" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_equipment_rate" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_category_equipment" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_entity" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_qualification_type" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_qualification" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_department" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_notification_type" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_customer_contact" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_customer_document" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_customer_timeline" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_payment_mode" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_payment_type" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_market_type" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_batch_status" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_batch" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_document_classification" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_document_type" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_document" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_budget" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_business" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_regulation_code" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_customer" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_customer_note" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_permission" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_login_permission" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_login" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_quick_access" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_role" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_contract_type_entry" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_contract_type_payment" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_contract_apprentice" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_contract_section" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_contract_info" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_contract_comment" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_employee" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_employee_document" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_document_type" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_admin_document" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_equipment" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_good_reference_price" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_insee_code" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_supplier_category" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_supplier_language_code" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_supplier" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_supplier_contact" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_supplier_evaluation" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_supplier_note" ALTER COLUMN "active" SET DEFAULT true`);
+        await queryRunner.query(`ALTER TABLE "tellos_zone" ALTER COLUMN "active" SET DEFAULT true`);
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`ALTER TABLE "tellos_zone" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_supplier_note" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_supplier_evaluation" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_supplier_contact" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_supplier" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_supplier_language_code" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_supplier_category" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_insee_code" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_good_reference_price" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_equipment" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_admin_document" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_document_type" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_employee_document" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_employee" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_contract_comment" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_contract_info" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_contract_section" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_contract_apprentice" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_contract_type_payment" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_contract_type_entry" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_role" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_quick_access" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_login" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_login_permission" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_permission" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_customer_note" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_customer" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_regulation_code" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_business" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_budget" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_document" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_document_type" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_document_classification" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_batch" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_batch_status" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_market_type" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_payment_type" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_business_payment_mode" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_customer_timeline" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_customer_document" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_customer_contact" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_notification_type" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_department" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_qualification" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_qualification_type" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_entity" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_category_equipment" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_equipment_rate" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_work_entity" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_good" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_section_code" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_workforce_rate" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_article_family" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_medium_size_centre" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_administrative_material" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_theoretical_hours_of_use_entity" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_medical_visists" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_career_path" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_leave_period" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_leave_distribution" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_upload" ALTER COLUMN "active" SET DEFAULT false`);
+        await queryRunner.query(`ALTER TABLE "tellos_activity" ALTER COLUMN "active" SET DEFAULT false`);
+    }
+
+}

@@ -1,0 +1,76 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllJobDescriptions(filter: JobDescriptionFilterInput, sort: JSON, pagination: PaginationInput): JobDescriptionPaginationResultType
+    findOneJobDescription(id: Int!): JobDescriptionType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createJobDescription(data: JobDescriptionCreateInput): JobDescriptionType
+    updateJobDescription(data: JobDescriptionUpdateInput): JobDescriptionType
+    removeJobDescription(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type JobDescriptionType {
+    id: Int
+    entity: EntityType
+    department: DepartmentType
+    contractsInfos: [ContractInfoType!]
+    number: String
+    title: String
+    file: UploadType
+    description: String
+    totalEmployees: Int
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type JobDescriptionPaginationResultType {
+    result: [JobDescriptionType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input JobDescriptionFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    entities: [Int!]
+    departments: [Int!]
+}
+
+input JobDescriptionCreateInput {
+    entity: Int
+    department: Int
+    number: String
+    title: String
+    file: Upload
+    description: String
+    totalEmployees: Int
+    active: Boolean
+}
+
+input JobDescriptionUpdateInput {
+    id: Int
+    entity: Int
+    department: Int
+    number: String
+    title: String
+    file: Upload
+    description: String
+    totalEmployees: Int
+    active: Boolean
+}
+############# INPUT #############

@@ -1,0 +1,163 @@
+############# QUERY #############
+type Query {
+    findAllSuppliers(filter: SupplierFilterArgs, sort: JSON, pagination: PaginationInput): SuppliersResponse
+    findOneSupplier(id: Int!): Supplier
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createSupplier(data: SupplierCreateInput): Supplier
+    updateSupplier(data: SupplierUpdateInput): Supplier
+    removeSupplier(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type Supplier {
+    id: Int!
+    vat: String!
+    accountBalance: Int
+    address: String
+    addressBis: String
+    ape: String!
+    authorizedOutStanding: Int
+    category: SupplierCategoryType
+    city: String
+    clientName: String
+    collectiveAccount: String
+    country: String
+    zipCode: String
+    fax: String
+    languageCode: SupplierLanguageCodeEntity
+    name: String
+    nonInvoicedDelivery: Int
+    observation: String
+    orderBook: Int
+    orderDate: Date
+    orderNumber: String
+    phone: String
+    email: String
+    website: String
+    siret: String!
+    totalOutStanding: Int
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type SuppliersResponse {
+    result: [Supplier!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input SupplierFilterArgs {
+    search: String
+    id: Int
+    number: [Int!]
+    name: String
+    vat: String
+    siret: String
+    ape: String
+    fax: String
+    phone: String
+    clientName: String
+    category: Int
+    categories: [Int!]
+    languageCode: Int
+    languageCodes: [Int!]
+
+    city: String
+    zipCode: String
+    active: Boolean
+}
+
+input SupplierCreateInput {
+    vat: String!
+    accountBalance: Int
+    address: String
+    addressBis: String
+    ape: String!
+    authorizedOutStanding: Int
+    category: Int
+    city: String
+    clientName: String
+    collectiveAccount: String
+    country: String
+    zipCode: String
+    fax: String
+    languageCode: Int
+    name: String!
+    nonInvoicedDelivery: Int
+    observation: String
+    orderBook: Int
+    orderDate: Date
+    orderNumber: String
+    phone: String
+    email: String
+    website: String
+    siret: String!
+    totalOutStanding: Int
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+input SupplierUpdateInput {
+    id: Int!
+    vat: String
+    accountBalance: Int
+    address: String
+    addressBis: String
+    ape: String
+    authorizedOutStanding: Int
+    category: Int
+    city: String
+    clientName: String
+    collectiveAccount: String
+    country: String
+    zipCode: String
+    fax: String
+    languageCode: Int
+    name: String!
+    nonInvoicedDelivery: Int
+    observation: String
+    orderBook: Int
+    orderDate: Date
+    orderNumber: String
+    phone: String
+    email: String
+    website: String
+    siret: String
+    totalOutStanding: Int
+    active: Boolean
+}
+############# INPUT #############
+
+############# ENUM #############
+enum SupplierConditionEnum {
+    FREE_DELIVERY
+    EXTRA
+    PICKUP
+    CASH_ON_DELIVERY
+}
+
+enum SupplierCurrencyEnum {
+    EUR
+}
+
+enum SupplierDeliveryModeEnum {
+    TAILGATE_REQUIRED
+    TARPAULIN
+    PLATEAU
+    DUMP
+}
+############# ENUM #############

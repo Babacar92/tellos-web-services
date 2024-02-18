@@ -1,0 +1,101 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllGoodReferencePrices(
+        filter: GoodReferencePriceFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): GoodReferencePricePaginationResultType
+    findOneGoodReferencePrice(id: Int!): GoodReferencePriceType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createGoodReferencePrice(
+        data: GoodReferencePriceCreateInput
+    ): GoodReferencePriceType
+    updateGoodReferencePrice(
+        data: GoodReferencePriceUpdateInput
+    ): GoodReferencePriceType
+    removeGoodReferencePrice(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type GoodReferencePriceType {
+    id: Int
+    supplier: Supplier
+    startDate: Date
+    endDate: Date
+    good: GoodType
+    price: Float
+    discount: Float
+    netPrice: Float
+    qtyMin: Int
+    executiveContract: Boolean
+    workUnit: WorkUnitType
+    entities: [EntityType!]
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type GoodReferencePricePaginationResultType {
+    result: [GoodReferencePriceType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input GoodReferencePriceFilterInput {
+    id: Int
+    ids: [Int!]
+    supplier: Int
+    startDate: Date
+    endDate: Date
+    price: Float
+    netPrice: Float
+    discount: Float
+    executiveContract: Boolean
+    entities: [Int!]
+    search: String
+    good: Int
+}
+
+input GoodReferencePriceCreateInput {
+    supplier: Int
+    startDate: Date!
+    endDate: Date
+    price: Float!
+    discount: Float
+    netPrice: Float
+    qtyMin: Int
+    executiveContract: Boolean
+    workUnit: Int
+    good: Int!
+    entities: [Int!]
+    active: Boolean
+}
+
+input GoodReferencePriceUpdateInput {
+    id: Int
+    supplier: Int
+    startDate: Date!
+    endDate: Date
+    price: Float!
+    discount: Float
+    netPrice: Float
+    qtyMin: Int
+    executiveContract: Boolean
+    workUnit: Int
+    entities: [Int!]
+    good: Int!
+    active: Boolean
+}
+############# INPUT #############

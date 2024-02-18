@@ -1,0 +1,88 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllCareerPaths(
+        filter: CareerPathFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): CareerPathPaginationResultPath
+    findOneCareerPath(id: Int!): CareerPathType
+    careerPathTimelineCountByType: JSON
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createCareerPath(data: CareerPathCreateInput): CareerPathType
+    updateCareerPath(data: CareerPathUpdateInput): CareerPathType
+    removeCareerPath(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type CareerPathType {
+    id: Int
+    title: String
+    icon: String
+    startDate: Date
+    endDate: Date
+    comment: String
+    file: UploadType
+    employee: Employee
+    editable: Boolean
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type CareerPathPaginationResultPath {
+    result: [CareerPathType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input CareerPathFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+    employeeId: Int
+    employeeIds: [Int!]
+    icon: String
+    icons: [String!]
+}
+
+input CareerPathCreateInput {
+    employee: Int
+    title: String
+    active: Boolean
+    icon: String
+    editable: Boolean
+    comment: String
+    file: Upload
+    fileName: String
+    startDate: Date
+    endDate: Date
+}
+
+input CareerPathUpdateInput {
+    id: Int
+    employee: Int
+    title: String
+    editable: Boolean
+    active: Boolean
+    icon: String
+    comment: String
+    file: Upload
+    fileName: String
+    startDate: Date
+    endDate: Date
+}
+############# INPUT #############

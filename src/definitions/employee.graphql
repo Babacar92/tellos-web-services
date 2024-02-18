@@ -1,0 +1,216 @@
+scalar Date
+scalar Upload
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllEmployees(
+        filter: EmployeeFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EmployeePaginationResultType
+    findAllCandidateEmployees(
+        filter: EmployeeFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EmployeePaginationResultType
+    findOneEmployee(id: Int!): Employee
+    findEmployeeLogged: Employee
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createEmployee(data: EmployeeCreateInput): Employee
+    updateEmployee(data: EmployeeUpdateInput): Employee
+    removeEmployee(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type Employee {
+    id: Int
+    login: LoginEntity
+    entity: EntityType
+    companyDeparture: EntityType
+    picture: UploadType
+    department: DepartmentType
+    adminMaterialCustomer: AdministrativeMaterialType
+    adminMaterialPersonToNotify: AdministrativeMaterialType
+    quickAccess: [QuickAccessType!]
+    materialParks: [EquipmentType!]
+    documents: [EmployeeDocumentType!]
+    qualifications: [QualificationType!]
+    superior: Employee
+    collaborators: [Employee!]
+    boss: Employee
+    employees: [Employee!]
+    careers: [CareerPathType!]
+    leaves: [LeaveType!]
+    contractInfo: ContractInfoType
+    medicalVisits: [MedicalVisitType!]
+    employeeDisciplinarys: [EmployeeDisciplinaryType!]
+    contracts: [ContractType!]
+    number: String
+    type: String
+    diplome: String
+    gender: String
+    numberOfChildren: Int
+    nationality: String
+    bank: String
+    position: String
+    rib: String
+    familyStatus: String
+    countryBirth: String
+    title: String
+    secureNumber: String
+    residencePermit: String
+    rpDeliveryBy: String
+    rpExpirationDate: Date
+    emailPro: String
+    phonePro: String
+    phoneFixPro: String
+    emailPerso: String
+    phonePerso: String
+    phoneFixPerso: String
+    phoneShortcut: String
+    internalNumber: String
+    handicap: Boolean
+    lastname: String
+    lastnameBis: String
+    firstname: String
+    birthday: Date
+    cityBirth: String
+    address: String
+    postcode: String
+    city: String
+    country: String
+    age: Int
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type EmployeePaginationResultType {
+    result: [Employee!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input EmployeeFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    entities: [Int!]
+    departments: [Int!]
+    contracts: [Int!]
+    categories: [Int!]
+    qualificationsNames: [Int!]
+    genders: [String!]
+    statuses: [Boolean!]
+    type: String
+    types: [String!]
+    hasNotLogin: Boolean
+}
+
+input EmployeeCreateInput {
+    login: Int
+    entity: Int
+    companyDeparture: Int
+    picture: Upload
+    department: Int
+    adminMaterialCustomer: Int
+    adminMaterialPersonToNotify: Int
+    superior: Int
+    boss: Int
+    contractInfo: Int
+    number: String
+    type: String
+    diplome: String
+    gender: String
+    numberOfChildren: Int
+    nationality: String
+    bank: String
+    position: String
+    rib: String
+    familyStatus: String
+    countryBirth: String
+    title: String
+    secureNumber: String
+    residencePermit: String
+    rpDeliveryBy: String
+    rpExpirationDate: Date
+    emailPro: String
+    phonePro: String
+    phoneFixPro: String
+    emailPerso: String
+    phonePerso: String
+    phoneFixPerso: String
+    phoneShortcut: String
+    internalNumber: String
+    handicap: Boolean
+    lastname: String
+    lastnameBis: String
+    firstname: String
+    birthday: Date
+    cityBirth: String
+    address: String
+    postcode: String
+    city: String
+    country: String
+    active: Boolean
+}
+
+input EmployeeUpdateInput {
+    id: Int
+    login: Int
+    entity: Int
+    companyDeparture: Int
+    picture: Upload
+    department: Int
+    adminMaterialCustomer: Int
+    adminMaterialPersonToNotify: Int
+    superior: Int
+    boss: Int
+    contractInfo: Int
+    number: String
+    type: String
+    diplome: String
+    gender: String
+    numberOfChildren: Int
+    nationality: String
+    bank: String
+    position: String
+    rib: String
+    familyStatus: String
+    countryBirth: String
+    title: String
+    secureNumber: String
+    residencePermit: String
+    rpDeliveryBy: String
+    rpExpirationDate: Date
+    emailPro: String
+    phonePro: String
+    phoneFixPro: String
+    emailPerso: String
+    phonePerso: String
+    phoneFixPerso: String
+    phoneShortcut: String
+    internalNumber: String
+    handicap: Boolean
+    lastname: String
+    lastnameBis: String
+    firstname: String
+    birthday: Date
+    cityBirth: String
+    address: String
+    postcode: String
+    city: String
+    country: String
+    active: Boolean
+}
+############# INPUT #############

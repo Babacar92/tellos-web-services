@@ -1,0 +1,57 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllObligationTypes(
+        filter: ObligationTypeFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): ObligationTypePaginationResult
+    findOneObligationType(id: Int!): ObligationType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createObligationType(data: ObligationTypeCreateInput): ObligationType
+    updateObligationType(data: ObligationTypeUpdateInput): ObligationType
+    removeObligationType(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type ObligationType {
+    id: Int
+    name: String
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type ObligationTypePaginationResult {
+    result: [ObligationType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input ObligationTypeFilterInput {
+    search: String
+    id: Int
+    ids: [Int!]
+    name: String
+    names: [String!]
+}
+
+input ObligationTypeCreateInput {
+    name: String
+}
+
+input ObligationTypeUpdateInput {
+    id: Int
+    name: String
+}
+############# INPUT #############

@@ -1,0 +1,68 @@
+scalar Date
+scalar JSON
+scalar Upload
+
+############# QUERY #############
+type Query {
+    findAllSupplierNotes(
+        filter: SupplierNoteFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): SupplierNotesResponse
+    findOneSupplierNote(id: Int!): SupplierNoteEntity
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createSupplierNote(data: SupplierNoteCreateInput): SupplierNoteEntity
+    updateSupplierNote(data: SupplierNoteUpdateInput): SupplierNoteEntity
+    removeSupplierNote(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type SupplierNoteEntity {
+    id: Int
+    supplier: Supplier
+    login: LoginEntity
+    documents: [UploadType!]
+    comment: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type SupplierNotesResponse {
+    result: [SupplierNoteEntity!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input SupplierNoteFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    supplier: Int
+    loginId: Int
+}
+
+input SupplierNoteCreateInput {
+    supplier: Int!
+    documents: [Upload!]
+    comment: String
+    active: Boolean
+}
+
+input SupplierNoteUpdateInput {
+    id: Int!
+    supplier: Int!
+    documents: [Upload!]
+    comment: String
+    active: Boolean
+}
+############# INPUT #############

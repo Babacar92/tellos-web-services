@@ -1,0 +1,71 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllConsumableLeaves(
+        filter: ConsumableLeaveFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): ConsumableLeavePaginationResultType
+    findOneConsumableLeave(id: Int!): ConsumableLeaveType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createConsumableLeave(data: ConsumableLeaveCreateInput): ConsumableLeaveType
+    updateConsumableLeave(data: ConsumableLeaveUpdateInput): ConsumableLeaveType
+    removeConsumableLeave(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type ConsumableLeaveType {
+    id: Int
+    employee: Employee
+    active: Boolean
+    dateFrom: Date
+    dateTo: Date
+    countDays: Float
+    countUsedDays: Float
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type ConsumableLeavePaginationResultType {
+    result: [ConsumableLeaveType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input ConsumableLeaveFilterInput {
+    ids: [Int!]
+    search: String
+    employeeId: Int
+    employeeIds: [Int!]
+}
+
+input ConsumableLeaveCreateInput {
+    employee: Int
+    dateFrom: Date
+    dateTo: Date
+    countDays: Float
+    countUsedDays: Float
+    active: Boolean
+}
+
+input ConsumableLeaveUpdateInput {
+    id: Int
+    employee: Int
+    dateFrom: Date
+    dateTo: Date
+    countDays: Float
+    countUsedDays: Float
+    active: Boolean
+}
+############# INPUT #############

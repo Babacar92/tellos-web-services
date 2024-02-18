@@ -1,0 +1,57 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllBusinessBatchStatuses(filter: BusinessBatchStatusFilterInput, sort: JSON, pagination: PaginationInput): BusinessBatchStatusPaginationResultType
+    findOneBusinessBatchStatus(id: Int!): BusinessBatchStatusType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createBusinessBatchStatus(data: BusinessBatchStatusCreateInput): BusinessBatchStatusType
+    updateBusinessBatchStatus(data: BusinessBatchStatusUpdateInput): BusinessBatchStatusType
+    removeBusinessBatchStatus(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type BusinessBatchStatusType {
+    id: Int
+    title: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type BusinessBatchStatusPaginationResultType {
+    result: [BusinessBatchStatusType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input BusinessBatchStatusFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+}
+
+input BusinessBatchStatusCreateInput {
+    title: String
+    active: Boolean
+}
+
+input BusinessBatchStatusUpdateInput {
+    id: Int
+    title: String
+    active: Boolean
+}
+############# INPUT #############

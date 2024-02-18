@@ -1,0 +1,64 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllLeaveDistributions(filter: LeaveDistributionFilterInput, sort: JSON, pagination: PaginationInput):LeaveDistributionPaginationResultType
+    findOneLeaveDistribution(id: Int!): LeaveDistributionType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createLeaveDistribution(data: LeaveDistributionCreateInput): LeaveDistributionType
+    updateLeaveDistribution(data: LeaveDistributionUpdateInput): LeaveDistributionType
+    removeLeaveDistribution(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type LeaveDistributionType {
+    id: Int
+    name: String
+    total: Float
+    leave:LeaveType
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type LeaveDistributionPaginationResultType {
+    result: [LeaveDistributionType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input LeaveDistributionFilterInput {
+    ids:[Int!]
+    search:String
+    leaveId:Int
+    leaveIds:[Int!]
+    name:String
+    names:[String!]
+}
+
+input LeaveDistributionCreateInput {
+    name: String
+    leave: Int
+    total: Float
+    
+}
+
+input LeaveDistributionUpdateInput {
+    id: Int
+    leave: Int
+    name: String
+    total: Float
+    active: Boolean
+}
+############# INPUT #############

@@ -1,0 +1,139 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllContractInfos(
+        filter: ContractInfoFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): ContractInfoPaginationResultPath
+    findOneContractInfo(id: Int!): ContractInfoType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createContractInfo(data: ContractInfoCreateInput): ContractInfoType
+    updateContractInfo(data: ContractInfoUpdateInput): ContractInfoType
+    removeContractInfo(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type ContractInfoType {
+    id: Int
+    typePayment: ContractTypePaymentType
+    jobDescription: ContractJobDescriptionType
+    employee: Employee
+    typeEntry: ContractTypeEntryType
+    section: ContractSectionType
+    level: ContractLevelType
+    apprentice: ContractApprenticeType
+    contracts: [ContractType!]
+    entryDate: Date
+    seniorityDate: Date
+    seniorityYears: Int
+    sagePayCode: String
+    endTrialPeriod: Date
+    renewal: String
+    endRenewal: Date
+    typeContract: String
+    endContractCdd: Date
+    amendmentCdd: Date
+    departureDate: Date
+    leavingRaison: String
+    job: String
+    category: String
+    code: String
+    position: String
+    coefficient: String
+    largeRateDep: String
+    ageCategory: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type ContractInfoPaginationResultPath {
+    result: [ContractInfoType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input ContractInfoFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    employeeId: Int
+    employeeIds: [Int!]
+    jobDescriptionId: Int
+    jobDescriptionIds: [Int!]
+    job: String
+    jobs: [String!]
+}
+
+input ContractInfoCreateInput {
+    employee: Int
+    typeEntry: Int
+    section: Int
+    level: Int
+    apprentice: Int
+    entryDate: Date
+    seniorityDate: Date
+    sagePayCode: String
+    endTrialPeriod: Date
+    renewal: String
+    endRenewal: Date
+    typeContract: String
+    endContractCdd: Date
+    amendmentCdd: Date
+    departureDate: Date
+    leavingRaison: String
+    job: String
+    category: String
+    code: String
+    position: String
+    coefficient: String
+    largeRateDep: String
+    ageCategory: String
+    typePayment: Int
+    jobDescription: Int
+    active: Boolean
+}
+
+input ContractInfoUpdateInput {
+    id: Int
+    employee: Int
+    typeEntry: Int
+    section: Int
+    level: Int
+    apprentice: Int
+    entryDate: Date
+    seniorityDate: Date
+    sagePayCode: String
+    endTrialPeriod: Date
+    renewal: String
+    endRenewal: Date
+    typeContract: String
+    endContractCdd: Date
+    amendmentCdd: Date
+    departureDate: Date
+    leavingRaison: String
+    job: String
+    category: String
+    code: String
+    position: String
+    coefficient: String
+    largeRateDep: String
+    ageCategory: String
+    typePayment: Int
+    jobDescription: Int
+    active: Boolean
+}
+
+############# INPUT #############

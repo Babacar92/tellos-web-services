@@ -1,0 +1,57 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllEquipmentParkUnits(filter: EquipmentParkUnitFilterInput, sort: JSON, pagination: PaginationInput): EquipmentParkUnitPaginationResultType
+    findOneEquipmentParkUnit(id: Int!): EquipmentParkUnitType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createEquipmentParkUnit(data: EquipmentParkUnitCreateInput): EquipmentParkUnitType
+    updateEquipmentParkUnit(data: EquipmentParkUnitUpdateInput): EquipmentParkUnitType
+    removeEquipmentParkUnit(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentParkUnitType {
+    id: Int
+    title: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type EquipmentParkUnitPaginationResultType {
+    result: [EquipmentParkUnitType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input EquipmentParkUnitFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+}
+
+input EquipmentParkUnitCreateInput {
+    title: String
+    active: Boolean
+}
+
+input EquipmentParkUnitUpdateInput {
+    id: Int
+    title: String
+    active: Boolean
+}
+############# INPUT #############

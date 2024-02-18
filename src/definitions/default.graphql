@@ -1,0 +1,58 @@
+scalar Date
+scalar JSON
+
+################## Query ##################
+type Query
+################## Query ##################
+
+################## Mutation ##################
+type Mutation
+################## Mutation ##################
+
+################## Type ##################
+type ActionLogType {
+    _id: String
+    type: String
+    root: String
+    user: JSON
+    data: JSON
+    createdAt: Date
+}
+################## Type ##################
+
+################## Input ##################
+input RemoveItemInput {
+    id: Int
+    type: REMOVE_TYPES
+}
+
+input ActionLogFilterInput {
+    search: String
+    searchActions: [String!]
+    searchUserIds: [Int!]
+    searchRoots: [String!]
+    id: String
+    ids: String
+    type: String
+    types: [String!]
+    root: String
+    roots: [String!]
+    userId: Int
+    userIds: [Int!]
+    dateSchedule: ActionLogDateScheduleFilterInput
+    data: JSON
+}
+
+input ActionLogDateScheduleFilterInput {
+    from: Date
+    to: Date
+}
+
+################## Input ##################
+
+################## Enum ##################
+enum REMOVE_TYPES {
+    REMOVE_SOFT,
+    REMOVE_HARD
+}
+################## Enum ##################

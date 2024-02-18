@@ -1,0 +1,28 @@
+scalar Date
+
+############# QUERY #############
+type Query {
+    mailerExample(mailerRequest: MailerRequestInput): MailerExampleResponse
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation
+############# MUTATION #############
+
+############# TYPE #############
+type MailerExampleResponse {
+    sent: Boolean!
+    err: String
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input MailerRequestInput {
+    email: String
+    subject: String
+    title: String
+    body: String
+}
+############# INPUT #############

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #ebebed;">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body style="background-color: #ebebed;">
+        <table border="0" align="center">
+            <caption>
+                <h2>
+                    Types de document
+                </h2>
+            </caption>
+            <tr>
+                    {{#if header.denomination}}<th bgcolor="#fff" height="50px">{{header.denomination}}</th>{{/if}}
+            </tr>
+            {{#each message}}
+                <tr>
+                    {{#if DENOM}}<td bgcolor="#f6f8fc" height="50px" align="center">{{denomination}}</td>{{/if}}
+                </tr>
+            {{/each}}
+        </table>
+
+  </body>
+</html>

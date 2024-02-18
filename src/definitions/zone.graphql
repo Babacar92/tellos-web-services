@@ -1,0 +1,57 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllZones(filter: ZoneFilterInput, sort: JSON, pagination: PaginationInput): ZonePaginationResultType
+    findOneZone(id: Int!): ZoneType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createZone(data: ZoneCreateInput): ZoneType
+    updateZone(data: ZoneUpdateInput): ZoneType
+    removeZone(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type ZoneType {
+    id: Int
+    code: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type ZonePaginationResultType {
+    result: [ZoneType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input ZoneFilterInput {
+    id: Int
+    ids: [Int!]
+    code: String
+    codes: [String!]
+    search: String
+}
+
+input ZoneCreateInput {
+    code: String
+    active: Boolean
+}
+
+input ZoneUpdateInput {
+    id: Int
+    code: String
+    active: Boolean
+}
+############# INPUT #############

@@ -1,0 +1,59 @@
+scalar Date
+scalar JSON
+
+################## Query ##################
+type Query {
+    getAllTexts: JSON
+    findPaginationTexts(filter: TranslationSortInput, sort: JSON, pagination: PaginationInput): TranslationPaginationType
+}
+################## Query ##################
+
+################## Mutation ##################
+type Mutation {
+    manageText(TranslationManageTextInput: TranslationManageTextInput): JSON
+    removeText(key: String, domain: String): JSON
+    createNotFoundText(key: String, domain: String): JSON
+}
+################## Mutation ##################
+
+################## Type ##################
+type TranslationType {
+    id: Int
+    code: String
+    title: String
+    texts: [TranslationTextType!]
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type TranslationTextType {
+    id: Int
+    lang: TranslationType
+    key: String
+    value: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type TranslationPaginationType {
+    result: JSON
+    pagination: PaginationType
+}
+################## Type ##################
+
+################## Input ##################
+input TranslationManageTextInput {
+    text: JSON
+}
+
+input TranslationSortInput {
+    search: String
+    orderBy: PaginationOrderByType
+}
+################## Input ##################

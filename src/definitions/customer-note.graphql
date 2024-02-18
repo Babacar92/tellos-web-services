@@ -1,0 +1,65 @@
+scalar Date
+scalar JSON
+scalar Upload
+
+############# QUERY #############
+type Query {
+    findAllCustomerNotes(filter: CustomerNoteFilterInput, sort: JSON, pagination: PaginationInput): CustomerNotePaginationResultType
+    findOneCustomerNote(id: Int!): CustomerNoteType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createCustomerNote(data: CustomerNoteCreateInput): CustomerNoteType
+    updateCustomerNote(data: CustomerNoteUpdateInput): CustomerNoteType
+    removeCustomerNote(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type CustomerNoteType {
+    id: Int
+    customer: CustomerType
+    login: LoginEntity
+    documents: [UploadType!]
+    comment: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type CustomerNotePaginationResultType {
+    result: [CustomerNoteType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input CustomerNoteFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    customerId: Int
+    loginId: Int
+}
+
+input CustomerNoteCreateInput {
+    customer: Int
+    documents: [Upload!]
+    comment: String
+    active: Boolean
+}
+
+input CustomerNoteUpdateInput {
+    id: Int
+    customer: Int
+    documents: [Upload!]
+    comment: String
+    active: Boolean
+}
+############# INPUT #############

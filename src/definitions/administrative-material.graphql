@@ -1,0 +1,143 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllAdministrativeMaterials(
+        filter: AdministrativeMaterialFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): AdministrativeMaterialPaginationResultType
+    findOneAdministrativeMaterial(id: Int!): AdministrativeMaterialType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createAdministrativeMaterial(
+        data: AdministrativeMaterialCreateInput
+    ): AdministrativeMaterialType
+    updateAdministrativeMaterial(
+        data: AdministrativeMaterialUpdateInput
+    ): AdministrativeMaterialType
+    removeAdministrativeMaterial(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type AdministrativeMaterialType {
+    id: Int
+    monthlyRent: Float
+    maintenanceRent: Float
+    maxAuthorizedKm: Float
+    BuybackValue: Float
+    fixedAssetCode: Float
+    salePrice: Float
+    geolocatizationBoxNumber: Float
+    monthlyUnitPrice: Float
+    TSVRPurchase: Float
+    TSVRTransfer: Float
+    totalCard: Float
+    PASSango: Float
+    breakevenPoint: Float
+    utilizationRate: Float
+    comment: String
+    financing: String
+    exitType: String
+    typeOfSale: String
+    pendingExit: Boolean
+    carFleetInsurance: Boolean
+    machineryInsurance: Boolean
+    contractStartDate: Date
+    contractEndDate: Date
+    saleDate: Date
+    companyOwner: EntityType
+    theoreticalHour: TheoreticalHoursOfUseType
+    customerNames: [Employee]
+    personsToNotify: [Employee]
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type AdministrativeMaterialPaginationResultType {
+    result: [AdministrativeMaterialType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input AdministrativeMaterialFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    comment: String
+    comments: [String!]
+    contractStartDate: Date
+    contractEndDate: Date
+    saleDate: Date
+}
+
+input AdministrativeMaterialCreateInput {
+    monthlyRent: Float
+    maintenanceRent: Float
+    maxAuthorizedKm: Float
+    BuybackValue: Float
+    fixedAssetCode: Float
+    salePrice: Float
+    geolocatizationBoxNumber: Float
+    monthlyUnitPrice: Float
+    TSVRPurchase: Float
+    TSVRTransfer: Float
+    totalCard: Float
+    PASSango: Float
+    breakevenPoint: Float
+    utilizationRate: Float
+    comment: String
+    financing: String
+    exitType: String
+    typeOfSale: String
+    pendingExit: Boolean
+    carFleetInsurance: Boolean
+    machineryInsurance: Boolean
+    contractStartDate: Date
+    contractEndDate: Date
+    saleDate: Date
+    companyOwner: Int
+    theoreticalHour: Int
+}
+
+input AdministrativeMaterialUpdateInput {
+    id: Int
+    monthlyRent: Float
+    maintenanceRent: Float
+    maxAuthorizedKm: Float
+    BuybackValue: Float
+    fixedAssetCode: Float
+    salePrice: Float
+    geolocatizationBoxNumber: Float
+    monthlyUnitPrice: Float
+    TSVRPurchase: Float
+    TSVRTransfer: Float
+    totalCard: Float
+    PASSango: Float
+    breakevenPoint: Float
+    utilizationRate: Float
+    comment: String
+    financing: String
+    exitType: String
+    typeOfSale: String
+    pendingExit: Boolean
+    carFleetInsurance: Boolean
+    machineryInsurance: Boolean
+    contractStartDate: Date
+    contractEndDate: Date
+    saleDate: Date
+    companyOwner: Int
+    theoreticalHour: Int
+}
+
+############# INPUT #############

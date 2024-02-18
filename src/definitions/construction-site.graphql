@@ -1,0 +1,117 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllConstructionSites(
+        filter: ConstructionSiteFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): ConstructionSitePaginationResult
+    findOneConstructionSite(id: Int!): ConstructionSite
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createConstructionSite(data: ConstructionSiteCreateInput): ConstructionSite
+    updateConstructionSite(data: ConstructionSiteUpdateInput): ConstructionSite
+    removeConstructionSite(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type ConstructionSite {
+    id: Int!
+    code: String!
+    type: ConstructionSiteTypeEnum!
+    from: ConstructionSite
+    label: String
+    place: String
+    nature: String
+    entity: EntityType
+    submittedToGeneralFees: Boolean
+    constructionForecast: Boolean
+    commands: Int
+    incomes: Int
+    expenses: Int
+    billings: Int
+    openingCaseDate: Date
+    startDate: Date
+    endDate: Date
+    ClosingDate: Date
+    status: ConstructionSiteStatusEnum
+    dictDate: Date
+    dictReference: String
+    circulationDate: Date
+    circulationRef: String
+    riskFrom: Employee
+    riskComment: String
+    #createdAt: Date
+    #updatedAt: Date
+    #deletedAt: Date
+    #createdBy: String
+    #updatedBy: String
+}
+
+type ConstructionSitePaginationResult {
+    result: [ConstructionSite!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input ConstructionSiteFilterInput {
+    search: String
+    id: Int
+    ids: [Int!]
+    entityId: Int
+    entityIds: [Int!]
+    startDate: Date
+    endDate: Date
+    status: ConstructionSiteStatusEnum
+}
+
+input ConstructionSiteCreateInput {
+    label: String!
+    type: ConstructionSiteTypeEnum!
+    entity: Int!
+    from: Int
+}
+
+input ConstructionSiteUpdateInput {
+    id: Int!
+    label: String
+    place: String
+    nature: String
+    entity: Int
+    submittedToGeneralFees: Boolean
+    constructionForecast: Boolean
+    commands: Int
+    incomes: Int
+    expenses: Int
+    billings: Int
+    openingCaseDate: Date
+    startDate: Date
+    endDate: Date
+    ClosingDate: Date
+    status: ConstructionSiteStatusEnum
+    dictDate: Date
+    dictReference: String
+    circulationDate: Date
+    circulationRef: String
+    riskFrom: Int
+    riskComment: String
+}
+############# INPUT #############
+
+enum ConstructionSiteTypeEnum {
+    construction_site
+    sub_construction_site
+}
+
+enum ConstructionSiteStatusEnum {
+    admin_phase
+    inactive
+    in_progress
+}

@@ -1,0 +1,63 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllWorkforceRates(filter: WorkforceRateFilterInput, sort: JSON, pagination: PaginationInput): WorkforceRatePaginationResultType
+    findOneWorkforceRate(id: Int!): WorkforceRateType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createWorkforceRate(data: WorkforceRateCreateInput): WorkforceRateType
+    updateWorkforceRate(data: WorkforceRateUpdateInput): WorkforceRateType
+    removeWorkforceRate(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type WorkforceRateType {
+    id: Int
+    entity: EntityType
+    workUnit: WorkUnitType
+    sectionCode: SectionCodeType
+    price: Float
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type WorkforceRatePaginationResultType {
+    result: [WorkforceRateType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input WorkforceRateFilterInput {
+    id: Int
+    ids: [Int!]
+}
+
+input WorkforceRateCreateInput {
+    entity: Int!
+    workUnit: Int!
+    sectionCode: Int!
+    price: Float!
+    active: Boolean
+}
+
+input WorkforceRateUpdateInput {
+    id: Int!
+    entity: Int!
+    workUnit: Int!
+    sectionCode: Int!
+    price: Float!
+    active: Boolean
+}
+############# INPUT #############

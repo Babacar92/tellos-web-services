@@ -1,0 +1,54 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+  findAllEquipmentTechnicalGenres(filter: EquipmentTechnicalGenreFilterInput, sort: JSON, pagination: PaginationInput): EquipmentTechnicalGenrePaginationResult
+  findOneEquipmentTechnicalGenre(id: Int!): EquipmentTechnicalGenre
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+  createEquipmentTechnicalGenre(data: EquipmentTechnicalGenreCreateInput): EquipmentTechnicalGenre
+  updateEquipmentTechnicalGenre(data: EquipmentTechnicalGenreUpdateInput): EquipmentTechnicalGenre
+  removeEquipmentTechnicalGenre(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentTechnicalGenre {
+  id: Int
+  name: String
+  createdAt: Date
+  updatedAt: Date
+  deletedAt: Date
+  createdBy: String
+  updatedBy: String
+}
+
+type EquipmentTechnicalGenrePaginationResult {
+  result: [EquipmentTechnicalGenre!]
+  pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input EquipmentTechnicalGenreFilterInput {
+  search: String
+  id: Int
+  ids: [Int!]
+  name: String
+  names: [String!]
+}
+
+input EquipmentTechnicalGenreCreateInput {
+  name: String!
+}
+
+input EquipmentTechnicalGenreUpdateInput {
+  id: Int
+  name: String
+}
+############# INPUT #############

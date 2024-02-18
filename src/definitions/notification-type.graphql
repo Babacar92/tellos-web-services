@@ -1,0 +1,67 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllNotificationsTypes(filter: NotificationTypeFilterInput, sort: JSON, pagination: PaginationInput): NotificationTypePaginationResultType
+    findOneNotificationType(id: Int!): NotificationTypeType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createNotificationType(data: NotificationTypeCreateInput): NotificationTypeType
+    updateNotificationType(data: NotificationTypeUpdateInput): NotificationTypeType
+    removeNotificationType(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+################## Mutation ##################
+type Subscription
+################## Mutation ##################
+
+############# TYPE #############
+type NotificationTypeType {
+    id: Int
+    title: String
+    icon: String
+    active: Boolean
+    total: Int
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type NotificationTypePaginationResultType {
+    result: [NotificationTypeType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input NotificationTypeFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+    icon: String
+    icons: [String!]
+}
+
+input NotificationTypeCreateInput {
+    title: String
+    icon: String
+    active: Boolean
+}
+
+input NotificationTypeUpdateInput {
+    id: Int
+    title: String
+    icon: String
+    active: Boolean
+}
+############# INPUT #############

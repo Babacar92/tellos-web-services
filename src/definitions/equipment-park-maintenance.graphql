@@ -1,0 +1,107 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllPaginatedEquipmentParkMaintenances(
+        filter: EquipmentParkMaintenanceFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EquipmentParkMaintenancePaginationResultType
+    findOneEquipmentParkMaintenance(id: Int!): EquipmentParkMaintenance
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createEquipmentParkMaintenance(
+        data: CreateEquipmentParkMaintenanceInput
+    ): EquipmentParkMaintenance
+    updateEquipmentParkMaintenance(
+        data: UpdateEquipmentParkMaintenanceInput
+    ): EquipmentParkMaintenance
+    deleteEquipmentParkMaintenance(
+        id: Int!
+        cascade: Boolean
+        equipmentParkId: Int
+        categoryId: Int
+    ): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentParkMaintenance {
+    id: Int
+
+    equipmentPark: EquipmentPark!
+
+    # TODO: Add Obligation
+
+    operation: String!
+
+    duration: Float!
+
+    remark: String
+
+    unitOfWork: EquipmentParkWorkUnitTypeEnum
+
+    triggerDate: Date
+
+    triggerNumber: Float
+
+    status: MaintenanceStatusEnum!
+}
+
+type EquipmentParkMaintenancePaginationResultType {
+    result: [EquipmentParkMaintenance!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+
+input CreateEquipmentParkMaintenanceInput {
+    equipmentPark: Int!
+
+    # TODO: Add Obligation
+
+    operation: String!
+
+    duration: Float!
+
+    remark: String
+}
+
+input UpdateEquipmentParkMaintenanceInput {
+    id: Int
+
+    equipmentPark: Int
+
+    # TODO: Add Obligation
+
+    operation: String
+
+    duration: Float
+
+    remark: String
+
+    status: MaintenanceStatusEnum
+}
+
+input EquipmentParkMaintenanceFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    equipmentParkId: Int
+    equipmentParkIds: [Int!]
+    startDate: Date
+    endDate: Date
+}
+
+############# INPUT #############
+
+enum MaintenanceStatusEnum {
+    Todo
+    Done
+    Expired
+}

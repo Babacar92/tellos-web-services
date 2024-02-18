@@ -1,0 +1,64 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllDocumentTypes(filter: DocumentTypeFilterInput, sort: JSON, pagination: PaginationInput): DocumentTypePaginationResultType
+    findOneDocumentType(id: Int!): DocumentTypeType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createDocumentType(data: DocumentTypeCreateInput): DocumentTypeType
+    updateDocumentType(data: DocumentTypeUpdateInput): DocumentTypeType
+    removeDocumentType(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type DocumentTypeType {
+    id: Int
+    title: String
+    category: DocumentCategoryType
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type DocumentTypePaginationResultType {
+    result: [DocumentTypeType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input DocumentTypeFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+    category: Int
+    categories: [Int!]
+    categoryTitle: String
+    categoryTitles: [String!]
+}
+
+input DocumentTypeCreateInput {
+    title: String
+    category: Int
+    active: Boolean
+}
+
+input DocumentTypeUpdateInput {
+    id: Int
+    title: String
+    category: Int
+    active: Boolean
+}
+############# INPUT #############

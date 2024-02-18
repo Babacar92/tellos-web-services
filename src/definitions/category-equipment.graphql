@@ -1,0 +1,112 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllCategoryEquipments(
+        filter: CategoryEquipmentFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): CategoryEquipmentPaginationResultType
+    findOneCategoryEquipment(id: Int!): CategoryEquipment
+    findAllCategoryEquipmentsForEquipmentRate(
+        filter: CategoryEquipmentFilterForEquipmentRateInput
+        sort: JSON
+        pagination: PaginationInput
+    ): CategoryEquipmentForEquipmentRatePaginationResultType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createCategoryEquipment(
+        data: CategoryEquipmentCreateInput
+    ): CategoryEquipment
+    updateCategoryEquipment(
+        data: CategoryEquipmentUpdateInput
+    ): CategoryEquipment
+    removeCategoryEquipment(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type CategoryEquipment {
+    id: Int
+    code: String
+    title: String
+    mediumSizedCentre: MediumSizedCentreType
+    equipmentParks: [EquipmentType!]
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type CategoryEquipmentForEquipmentRateType {
+    id: Int
+    code: String
+    title: String
+    equipmentRates: [EquipmentRateType]
+    mediumSizedCentre: MediumSizedCentreType
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type CategoryEquipmentPaginationResultType {
+    result: [CategoryEquipment!]
+    pagination: PaginationType
+}
+
+type CategoryEquipmentForEquipmentRatePaginationResultType {
+    result: [CategoryEquipmentForEquipmentRateType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input CategoryEquipmentFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+    code: String
+    codes: [String!]
+    mediumSizedCentreId: Int
+    mediumSizedCentreIds: [Int!]
+}
+
+input CategoryEquipmentFilterForEquipmentRateInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+    code: String
+    codes: [String!]
+    workUnit: Int
+    workUnits: [Int!]
+    entity: Int!
+}
+
+input CategoryEquipmentCreateInput {
+    title: String
+    code: String
+    mediumSizedCentre: Int
+    active: Boolean
+}
+
+input CategoryEquipmentUpdateInput {
+    id: Int
+    title: String
+    code: String
+    mediumSizedCentre: Int
+    active: Boolean
+}
+############# INPUT #############

@@ -1,0 +1,123 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllGoods(
+        filter: GoodFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): GoodPaginationResultType
+    findOneGood(id: Int!): GoodType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createGood(data: GoodCreateInput): GoodType
+    updateGood(data: GoodUpdateInput): GoodType
+    removeGood(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type GoodType {
+    id: Int
+    name: String
+    nameBis: String
+    shopGood: Boolean
+    status: String
+    ean: String
+    lengthSize: Float
+    widthSize: Float
+    heightSize: Float
+    volume: Float
+    grossWeight: Float
+    netWeight: Float
+    technicalDescription: String
+    selectionActive: Boolean
+    stockManagement: Boolean
+    isGeneric: Boolean
+    workUnit: WorkUnitType
+    sectionCode: SectionCodeType
+    parentFamily: ArticleFamilyType
+    subFamily: ArticleFamilyType
+    supplier: Supplier
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type GoodPaginationResultType {
+    result: [GoodType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input GoodFilterInput {
+    id: Int
+    ids: [Int!]
+    name: String
+    names: [String!]
+    nameBis: String
+    nameBises: [String!]
+    sectionCodeIds: [Int!]
+    supplier: Int
+    familyIds: [Int!]
+    subFamilyIds: [Int!]
+    search: String
+}
+
+input GoodCreateInput {
+    name: String
+    nameBis: String
+    shopGood: Boolean
+    status: String
+    ean: String
+    lengthSize: Float
+    widthSize: Float
+    heightSize: Float
+    volume: Float
+    grossWeight: Float
+    netWeight: Float
+    technicalDescription: String
+    selectionActive: Boolean
+    stockManagement: Boolean
+    isGeneric: Boolean
+    workUnit: Int
+    supplier: Int!
+    sectionCode: Int
+    parentFamily: Int
+    subFamily: Int
+    active: Boolean
+}
+
+input GoodUpdateInput {
+    id: Int
+    name: String
+    nameBis: String
+    shopGood: Boolean
+    status: String
+    ean: String
+    lengthSize: Float
+    widthSize: Float
+    heightSize: Float
+    volume: Float
+    grossWeight: Float
+    netWeight: Float
+    technicalDescription: String
+    selectionActive: Boolean
+    stockManagement: Boolean
+    isGeneric: Boolean
+    workUnit: Int
+    supplier: Int
+    sectionCode: Int
+    parentFamily: Int
+    subFamily: Int
+    active: Boolean
+}
+############# INPUT #############

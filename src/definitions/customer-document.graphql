@@ -1,0 +1,71 @@
+scalar Date
+scalar JSON
+scalar Upload
+
+############# QUERY #############
+type Query {
+    findAllCustomerDocuments(filter: CustomerDocumentFilterInput, sort: JSON, pagination: PaginationInput): CustomerDocumentPaginationResultType
+    findOneCustomerDocument(id: Int!): CustomerDocumentType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createCustomerDocument(data: CustomerDocumentCreateInput): CustomerDocumentType
+    updateCustomerDocument(data: CustomerDocumentUpdateInput): CustomerDocumentType
+    removeCustomerDocument(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type CustomerDocumentType {
+    id: Int
+    customer: CustomerType
+    login: LoginEntity
+    title: String
+    description: String
+    file: UploadType
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type CustomerDocumentPaginationResultType {
+    result: [CustomerDocumentType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input CustomerDocumentFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    customerId: Int
+    customerIds: [Int!]
+    employeeIds: [Int!]
+    dateFrom: Date
+    dateTo: Date
+}
+
+input CustomerDocumentCreateInput {
+    customer: Int
+    file: Upload
+    title: String
+    description: String
+    active: Boolean
+}
+
+input CustomerDocumentUpdateInput {
+    id: Int
+    customer: Int
+    file: Upload
+    title: String
+    description: String
+    active: Boolean
+}
+############# INPUT #############

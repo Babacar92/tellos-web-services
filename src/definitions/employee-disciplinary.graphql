@@ -1,0 +1,70 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllEmployeeDisciplinaries(
+        filter: EmployeeDisciplinaryFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EmployeeDisciplinaryPaginationResultPath
+    findOneEmployeeDisciplinary(id: Int!): EmployeeDisciplinaryType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createEmployeeDisciplinary(
+        data: EmployeeDisciplinaryCreateInput
+    ): EmployeeDisciplinaryType
+    updateEmployeeDisciplinary(
+        data: EmployeeDisciplinaryUpdateInput
+    ): EmployeeDisciplinaryType
+    removeEmployeeDisciplinary(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EmployeeDisciplinaryType {
+    id: Int
+    comment: String
+    files: [UploadType!]
+    employee: Employee
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type EmployeeDisciplinaryPaginationResultPath {
+    result: [EmployeeDisciplinaryType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input EmployeeDisciplinaryFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    employeeId: Int
+    employeeIds: [Int!]
+}
+
+input EmployeeDisciplinaryCreateInput {
+    employee: Int
+    comment: String
+    files: [Upload!]
+    active: Boolean
+}
+
+input EmployeeDisciplinaryUpdateInput {
+    id: Int
+    employee: Int
+    comment: String
+    files: [Upload!]
+    active: Boolean
+}
+############# INPUT #############

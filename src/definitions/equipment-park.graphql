@@ -1,0 +1,112 @@
+scalar Date
+############# QUERY #############
+type Query {
+    findAllPaginatedEquipmentParks(
+        filter: EquipmentParkFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EquipmentParkPaginationResult
+    findOneEquipmentPark(id: Int!): EquipmentPark
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createEquipmentPark(data: CreateEquipmentParkInput): EquipmentPark
+    updateEquipmentPark(data: UpdateEquipmentParkInput): EquipmentPark
+    removeEquipmentPark(data: DeleteEquipmentParkInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentPark {
+    id: Int!
+    code: String!
+    denomination: String!
+    registrationNumber: String
+    category: CategoryEquipment!
+    entity: EntityType!
+    orderNumber: String
+    orderDate: Date
+    deliveryDate: Date
+    firstCirculation: Date
+    registrationDate: Date
+    originalValue: Float
+    counter: Float
+    standardCost: Float
+    co2Emission: Float
+    type: String
+    pictures: [UploadType]
+    employee: Employee
+    startDate: Date
+    endDate: Date
+    active: Boolean
+    available: Boolean
+    unitOfWork: EquipmentParkWorkUnitTypeEnum
+    center: MediumSizedCentreType
+}
+
+type EquipmentParkPaginationResult {
+    result: [EquipmentPark!]
+    pagination: PaginationType
+}
+
+input CreateEquipmentParkInput {
+    denomination: String!
+    category: Int!
+    entity: Int!
+}
+
+input UpdateEquipmentParkInput {
+    id: Int
+    denomination: String
+    registrationNumber: String
+    orderNumber: String
+    category: Int
+    entity: Int
+    employee: Int
+    type: String
+    orderDate: Date
+    deliveryDate: Date
+    firstCirculation: Date
+    registrationDate: Date
+    originalValue: Float
+    counter: Float
+    standardCost: Float
+    co2Emission: Float
+    pictures: [Int]
+    newPictures: [Upload]
+    active: Boolean
+    available: Boolean
+    unitOfWork: EquipmentParkWorkUnitTypeEnum
+    center: Int
+}
+
+input DeleteEquipmentParkInput {
+    id: Int!
+}
+
+input EquipmentParkFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    employeeId: Int
+    employeeIds: [Int!]
+    entityId: Int
+    entityIds: [Int!]
+    categoryId: Int
+    categoryIds: [Int!]
+    active: Boolean
+    startDate: Date
+    endDate: Date
+    type: String
+    available: Boolean
+}
+############# INPUT #############
+
+enum EquipmentParkWorkUnitTypeEnum {
+    Tonnes
+    Month
+    Hours
+    Km
+}

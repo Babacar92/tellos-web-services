@@ -1,0 +1,95 @@
+stages:
+  - build_dev
+  - build_prod
+  - deployment_dev
+  - deployment_staging
+  - deployment_prod
+
+default:
+  before_script:
+    - echo "RUNNER STARTED AT $(date -u)"
+  after_script:
+    # PRUNE DOCKER SYSTEM
+    - docker system prune -f -a
+    # REMOVE RUNNER FOLDER
+    - rm -rf ${HOME}/builds/${CI_RUNNER_SHORT_TOKEN}
+    - echo "RUNNER FINISHED AT $(date -u)"
+
+# Build for job DEV
+build_dev:
+  stage: build_dev
+  tags:
+    - deployment
+  variables:
+    WEBSERVICE_VERSION: dev
+  script:
+    - cd ${HOME}/builds/${CI_RUNNER_SHORT_TOKEN}/0/${CI_PROJECT_PATH}
+    - cd ./docker
+    - docker login -u ${ACCESS_TOKEN_USERNAME} -p ${ACCESS_TOKEN_PASSWORD} registry.gitlab.itdm-group.com
+    - docker compose --file docker-compose.yml build --no-cache webservice
+    - docker compose --file docker-compose.yml push webservice
+    - docker logout
+  only:
+    - dev
+
+# Deployed for job DEV
+deployment_dev:
+  stage: deployment_dev
+  variables:
+    WEBSERVICE_VERSION: dev
+  tags:
+    - deployment
+  script:
+    - cd /var/www/webservice
+    - docker login -u ${ACCESS_TOKEN_USERNAME} -p ${ACCESS_TOKEN_PASSWORD} registry.gitlab.itdm-group.com
+    - docker compose up -d --force-recreate webservice
+    - docker logout
+  only:
+    - dev
+
+# Build for job STAGING | MAIN
+build_prod:
+  stage: build_prod
+  tags:
+    - deployment
+  variables:
+    WEBSERVICE_VERSION: v1.0.2
+  script:
+    - cd ${HOME}/builds/${CI_RUNNER_SHORT_TOKEN}/0/${CI_PROJECT_PATH}
+    - cd ./docker
+    - docker login -u ${ACCESS_TOKEN_USERNAME} -p ${ACCESS_TOKEN_PASSWORD} registry.gitlab.itdm-group.com
+    - export WEBSERVICE_VERSION=v1.0.2
+    - docker compose --file docker-compose.yml build --no-cache webservice
+    - docker compose --file docker-compose.yml push webservice
+    - docker logout
+  only:
+    - staging
+    - main
+
+# Deployed for job STAGING
+# deployment_staging:
+#   stage: deployment_staging
+#   variables:
+#     WEBSERVICE_VERSION: ${CI_COMMIT_MESSAGE}
+#   tags:
+#     - deployment
+#   script:
+#     - docker login -u ${ACCESS_TOKEN_USERNAME} -p ${ACCESS_TOKEN_PASSWORD} registry.gitlab.itdm-group.com
+#     - docker compose
+#     - docker logout
+#   only:
+#     - staging
+
+# Deployed for job PROD
+# deployment_prod:
+#   variables:
+#     WEBSERVICE_VERSION: ${CI_COMMIT_MESSAGE}
+#   stage: deployment_prod
+#   tags:
+#     - deployment
+#   script:
+#     - docker login -u ${ACCESS_TOKEN_USERNAME} -p ${ACCESS_TOKEN_PASSWORD} registry.gitlab.itdm-group.com
+#     - docker compose
+#     - docker logout
+#   only:
+#     - main

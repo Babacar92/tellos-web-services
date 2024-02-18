@@ -1,0 +1,141 @@
+scalar Date
+scalar JSON
+scalar Upload
+
+############# QUERY #############
+type Query {
+    findAllCustomers(filter: CustomerFilterInput, sort: JSON, pagination: PaginationInput): CustomerPaginationResultType
+    findOneCustomer(id: Int!): CustomerType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createCustomer(data: CustomerCreateInput): CustomerType
+    updateCustomer(data: CustomerUpdateInput): CustomerType
+    removeCustomer(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type CustomerType {
+    id: Int
+    picture: UploadType
+    name: String
+    email: String
+    code: String
+    address: String
+    addressBis: String
+    zipCode: String
+    city: String
+    country: String
+    familly: String
+    typology: String
+    language: String
+    phone: String
+    fax: String
+    siret: String
+    ape: String
+    tvaNumber: String
+    taxeCode: String
+    regulationCode: RegulationCodeType
+    currency: String
+    rib: String
+    domiciliation: String
+    iban: String
+    bic: String
+    invoiceCopyNumber: Int
+    discountRate: Float
+    invoiceEmail: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type CustomerPaginationResultType {
+    result: [CustomerType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input CustomerFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    statuses: [Boolean!]
+    families: [String!]
+    typologies: [String!]
+    code: String
+    name: String
+    address: String
+    phone: String
+}
+
+input CustomerCreateInput {
+    picture: Upload
+    name: String
+    email: String
+    code: String
+    address: String
+    addressBis: String
+    zipCode: String
+    city: String
+    country: String
+    familly: String
+    typology: String
+    language: String
+    phone: String
+    fax: String
+    siret: String
+    ape: String
+    tvaNumber: String
+    taxeCode: String
+    regulationCode: Int
+    currency: String
+    rib: String
+    domiciliation: String
+    iban: String
+    bic: String
+    invoiceCopyNumber: Int
+    discountRate: Float
+    invoiceEmail: String
+    active: Boolean
+}
+
+input CustomerUpdateInput {
+    id: Int
+    picture: Upload
+    name: String
+    email: String
+    code: String
+    address: String
+    addressBis: String
+    zipCode: String
+    city: String
+    country: String
+    familly: String
+    typology: String
+    language: String
+    phone: String
+    fax: String
+    siret: String
+    ape: String
+    tvaNumber: String
+    taxeCode: String
+    regulationCode: Int
+    currency: String
+    rib: String
+    domiciliation: String
+    iban: String
+    bic: String
+    invoiceCopyNumber: Int
+    discountRate: Float
+    invoiceEmail: String
+    active: Boolean
+}
+############# INPUT #############

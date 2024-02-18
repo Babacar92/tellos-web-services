@@ -1,0 +1,81 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllPaginatedEquipmentParkDocuments(
+        filter: EquipmentParkDocumentFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EquipmentParkDocumentPaginationResultType
+    findOneEquipmentParkDocuments(id: Int!): EquipmentParkDocument
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createEquipmentParkDocument(
+        data: CreateEquipmentParkDocumentInput
+    ): EquipmentParkDocument
+    updateEquipmentParkDocument(
+        data: UpdateEquipmentParkDocumentInput
+    ): EquipmentParkDocument
+    deleteEquipmentParkDocument(id: Int!): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentParkDocument {
+    id: Int
+    title: String
+    description: String
+    equipmentPark: EquipmentPark
+    type: DocumentTypeType
+    user: LoginEntity
+    file: UploadType
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type EquipmentParkDocumentPaginationResultType {
+    result: [EquipmentParkDocument!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+
+input CreateEquipmentParkDocumentInput {
+    equipmentPark: Int!
+    title: String
+    file: Upload
+    description: String
+    type: Int
+}
+
+input UpdateEquipmentParkDocumentInput {
+    id: Int!
+    title: String
+    file: Upload
+    description: String
+    type: Int
+}
+
+input EquipmentParkDocumentFilterInput {
+    id: Int
+    ids: [Int!]
+    equipmentParkId: Int
+    equipmentParkIds: [Int!]
+    search: String
+    startDate: Date
+    endDate: Date
+    typeId: Int
+    typeIds: [Int!]
+    userId: Int
+    userIds: [Int!]
+}
+
+############# INPUT #############

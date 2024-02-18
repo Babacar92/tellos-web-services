@@ -1,0 +1,67 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllParagraphsFrames(filter: ParagraphFrameFilterInput, sort: JSON, pagination: PaginationInput): ParagraphFramePaginationResultType
+    findOneParagraphFrame(id: Int!): ParagraphFrameType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createParagraphFrame(data: ParagraphFrameCreateInput): ParagraphFrameType
+    updateParagraphFrame(data: ParagraphFrameUpdateInput): ParagraphFrameType
+    removeParagraphFrame(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type ParagraphFrameType {
+    id: Int
+    title: String
+    content: String
+    category: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type ParagraphFramePaginationResultType {
+    result: [ParagraphFrameType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input ParagraphFrameFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+    content: String
+    contents: [String!]
+    category: String
+    categories: [String!]
+}
+
+input ParagraphFrameCreateInput {
+    title: String
+    content: String
+    category: String
+    active: Boolean
+}
+
+input ParagraphFrameUpdateInput {
+    id: Int
+    title: String
+    content: String
+    category: String
+    active: Boolean
+}
+############# INPUT #############

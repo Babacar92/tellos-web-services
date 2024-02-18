@@ -1,0 +1,28 @@
+scalar Date
+
+############# QUERY #############
+type Query
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation
+############# MUTATION #############
+
+############# TYPE #############
+type TokenType {
+    id: Int
+    name: String
+    value: String
+    expireAt: Date
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+############# TYPE #############
+
+
+############# INPUT #############
+
+############# INPUT #############

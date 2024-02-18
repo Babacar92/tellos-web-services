@@ -1,0 +1,70 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllMediumSizedCentres(
+        filter: MediumSizedCentreFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): MediumSizedCentrePaginationResultType
+    findOneMediumSizedCentre(id: Int!): MediumSizedCentreType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createMediumSizedCentre(
+        data: MediumSizedCentreCreateInput
+    ): MediumSizedCentreType
+    updateMediumSizedCentre(
+        data: MediumSizedCentreUpdateInput
+    ): MediumSizedCentreType
+    removeMediumSizedCentre(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type MediumSizedCentreType {
+    id: Int
+    code: String
+    label: String
+    categoryEquipments: [CategoryEquipment!]
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type MediumSizedCentrePaginationResultType {
+    result: [MediumSizedCentreType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input MediumSizedCentreFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    code: String
+    codes: [String!]
+    label: String
+    labels: [String!]
+}
+
+input MediumSizedCentreCreateInput {
+    code: String
+    label: String
+    active: Boolean
+}
+
+input MediumSizedCentreUpdateInput {
+    id: Int
+    code: String
+    label: String
+    active: Boolean
+}
+############# INPUT #############

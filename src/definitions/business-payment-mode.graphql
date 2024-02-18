@@ -1,0 +1,57 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllBusinessPaymentModes(filter: BusinessPaymentModeFilterInput, sort: JSON, pagination: PaginationInput): BusinessPaymentModePaginationResultType
+    findOneBusinessPaymentMode(id: Int!): BusinessPaymentModeType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createBusinessPaymentMode(data: BusinessPaymentModeCreateInput): BusinessPaymentModeType
+    updateBusinessPaymentMode(data: BusinessPaymentModeUpdateInput): BusinessPaymentModeType
+    removeBusinessPaymentMode(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type BusinessPaymentModeType {
+    id: Int
+    title: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type BusinessPaymentModePaginationResultType {
+    result: [BusinessPaymentModeType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input BusinessPaymentModeFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+}
+
+input BusinessPaymentModeCreateInput {
+    title: String
+    active: Boolean
+}
+
+input BusinessPaymentModeUpdateInput {
+    id: Int
+    title: String
+    active: Boolean
+}
+############# INPUT #############

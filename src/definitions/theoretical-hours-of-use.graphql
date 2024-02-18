@@ -1,0 +1,62 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllTheoreticalHoursOfUses(filter: TheoreticalHoursOfUseFilterInput, sort: JSON, pagination: PaginationInput): TheoreticalHoursOfUsePaginationResultType
+    findOneTheoreticalHoursOfUse(id: Int!): TheoreticalHoursOfUseType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createTheoreticalHoursOfUse(data: TheoreticalHoursOfUseCreateInput): TheoreticalHoursOfUseType
+    updateTheoreticalHoursOfUse(data: TheoreticalHoursOfUseUpdateInput): TheoreticalHoursOfUseType
+    removeTheoreticalHoursOfUse(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type TheoreticalHoursOfUseType {
+    id: Int
+    year: String
+    hoursNumber: Float
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type TheoreticalHoursOfUsePaginationResultType {
+    result: [TheoreticalHoursOfUseType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input TheoreticalHoursOfUseFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    year: String
+    years: [String!]
+    hoursNumber: Float
+    hoursNumbers: [Float!]
+}
+
+input TheoreticalHoursOfUseCreateInput {
+    year: String
+    hoursNumber: Float
+    active: Boolean
+}
+
+input TheoreticalHoursOfUseUpdateInput {
+    id: Int
+    year: String
+    hoursNumber: Float
+    active: Boolean
+}
+############# INPUT #############

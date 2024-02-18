@@ -1,0 +1,66 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllEquipmentRates(
+        filter: EquipmentRateFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EquipmentRatePaginationResultType
+    findOneEquipmentRate(id: Int!): EquipmentRateType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createEquipmentRate(data: EquipmentRateCreateInput): EquipmentRateType
+    updateEquipmentRate(data: EquipmentRateUpdateInput): EquipmentRateType
+    removeEquipmentRate(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentRateType {
+    id: Int
+    entity: EntityType
+    workUnit: WorkUnitType
+    categoryEquipment: CategoryEquipment
+    price: Float
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type EquipmentRatePaginationResultType {
+    result: [EquipmentRateType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input EquipmentRateFilterInput {
+    id: Int
+    ids: [Int!]
+}
+
+input EquipmentRateCreateInput {
+    entity: Int!
+    workUnit: Int!
+    categoryEquipment: Int!
+    price: Float!
+    active: Boolean
+}
+
+input EquipmentRateUpdateInput {
+    id: Int!
+    entity: Int!
+    workUnit: Int!
+    categoryEquipment: Int!
+    price: Float!
+    active: Boolean
+}
+############# INPUT #############

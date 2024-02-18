@@ -1,0 +1,57 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllBusinessMarketTypes(filter: BusinessMarketTypeFilterInput, sort: JSON, pagination: PaginationInput): BusinessMarketTypePaginationResultType
+    findOneBusinessMarketType(id: Int!): BusinessMarketTypeType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createBusinessMarketType(data: BusinessMarketTypeCreateInput): BusinessMarketTypeType
+    updateBusinessMarketType(data: BusinessMarketTypeUpdateInput): BusinessMarketTypeType
+    removeBusinessMarketType(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type BusinessMarketTypeType {
+    id: Int
+    title: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type BusinessMarketTypePaginationResultType {
+    result: [BusinessMarketTypeType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input BusinessMarketTypeFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+}
+
+input BusinessMarketTypeCreateInput {
+    title: String
+    active: Boolean
+}
+
+input BusinessMarketTypeUpdateInput {
+    id: Int
+    title: String
+    active: Boolean
+}
+############# INPUT #############

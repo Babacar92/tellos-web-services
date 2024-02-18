@@ -1,0 +1,54 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+  findAllEquipmentTheoricalHours(filter: EquipmentTheoricalHourFilterInput, sort: JSON, pagination: PaginationInput): EquipmentTheoricalHourPaginationResult
+  findOneEquipmentTheoricalHour(id: Int!): EquipmentTheoricalHour
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+  createEquipmentTheoricalHour(data: EquipmentTheoricalHourCreateInput): EquipmentTheoricalHour
+  updateEquipmentTheoricalHour(data: EquipmentTheoricalHourUpdateInput): EquipmentTheoricalHour
+  removeEquipmentTheoricalHour(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentTheoricalHour {
+  id: Int
+  value: Int
+  createdAt: Date
+  updatedAt: Date
+  deletedAt: Date
+  createdBy: String
+  updatedBy: String
+}
+
+type EquipmentTheoricalHourPaginationResult {
+  result: [EquipmentTheoricalHour!]
+  pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input EquipmentTheoricalHourFilterInput {
+  search: String
+  id: Int
+  ids: [Int!]
+  value: Int
+  values: [Int!]
+}
+
+input EquipmentTheoricalHourCreateInput {
+  value: Int!
+}
+
+input EquipmentTheoricalHourUpdateInput {
+  id: Int
+  value: Int
+}
+############# INPUT #############

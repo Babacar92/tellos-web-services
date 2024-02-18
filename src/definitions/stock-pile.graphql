@@ -1,0 +1,62 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+  findAllStockPiles(filter: StockPileFilterInput, sort: JSON, pagination: PaginationInput): StockPilePaginationResult
+  findOneStockPile(id: Int!): StockPile
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+  createStockPile(data: StockPileCreateInput): StockPile
+  updateStockPile(data: StockPileUpdateInput): StockPile
+  removeStockPile(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type StockPile {
+  id: Int!
+  name: String!
+  code : String!
+  entity: EntityType!
+  createdAt: Date
+  updatedAt: Date
+  deletedAt: Date
+  createdBy: String
+  updatedBy: String
+}
+
+type StockPilePaginationResult {
+  result: [StockPile!]
+  pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input StockPileFilterInput {
+  search: String
+  id: Int
+  entityId: Int
+  entityIds: [Int!]
+  ids: [Int!]
+  name: String
+  names: [String!]
+  code: String
+  codes: [String!]
+}
+
+input StockPileCreateInput {
+  name: String!
+  entity: Int!
+}
+
+input StockPileUpdateInput {
+  id: Int!
+  name: String
+  entity: Int
+}
+############# INPUT #############

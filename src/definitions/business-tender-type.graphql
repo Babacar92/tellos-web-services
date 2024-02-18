@@ -1,0 +1,57 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllBusinessTenderTypes(filter: BusinessTenderTypeFilterInput, sort: JSON, pagination: PaginationInput): BusinessTenderTypePaginationResultType
+    findOneBusinessTenderType(id: Int!): BusinessTenderTypeType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createBusinessTenderType(data: BusinessTenderTypeCreateInput): BusinessTenderTypeType
+    updateBusinessTenderType(data: BusinessTenderTypeUpdateInput): BusinessTenderTypeType
+    removeBusinessTenderType(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type BusinessTenderTypeType {
+    id: Int
+    title: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type BusinessTenderTypePaginationResultType {
+    result: [BusinessTenderTypeType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input BusinessTenderTypeFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+}
+
+input BusinessTenderTypeCreateInput {
+    title: String
+    active: Boolean
+}
+
+input BusinessTenderTypeUpdateInput {
+    id: Int
+    title: String
+    active: Boolean
+}
+############# INPUT #############

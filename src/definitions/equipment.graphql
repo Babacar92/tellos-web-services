@@ -1,0 +1,123 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllEquipments(
+        filter: EquipmentFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EquipmentPaginationResultPath
+    findOneEquipment(id: Int!): EquipmentType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createEquipment(data: EquipmentCreateInput): EquipmentType
+    updateEquipment(data: EquipmentUpdateInput): EquipmentType
+    removeEquipment(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentType {
+    id: Int
+    denomination: String
+    code: String
+    registrationNumber: String
+    orderNumber: String
+    categorie: CategoryEquipment
+    type: String
+    available: String
+    startDate: Date
+    endDate: Date
+    orderDate: Date
+    deliveryDate: Date
+    firstCirculation: Date
+    registrationDate: Date
+    counter: Float
+    standardCost: Float
+    co2Emissions: Float
+    photo: UploadType
+    employee: Employee
+    entity: EntityType
+    uniqueIdentifier: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type EquipmentPaginationResultPath {
+    result: [EquipmentType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input EquipmentFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    startDate: Date
+    endDate: Date
+    employeeId: Int
+    employeeIds: [Int!]
+    entityId: Int
+    entityIds: [Int!]
+    categorieId: Int
+    categoriIds: [Int!]
+    available: String
+    availables: [String!]
+}
+
+input EquipmentCreateInput {
+    denomination: String
+    registrationNumber: String
+    orderNumber: String
+    categorie: Int
+    type: String
+    available: String
+    startDate: Date
+    endDate: Date
+    orderDate: Date
+    deliveryDate: Date
+    firstCirculation: Date
+    registrationDate: Date
+    counter: Float
+    standardCost: Float
+    co2Emissions: Float
+    photo: Upload
+    photoName: String
+    employee: Int
+    entity: Int
+    active: Boolean
+}
+
+input EquipmentUpdateInput {
+    id: Int
+    denomination: String
+    registrationNumber: String
+    orderNumber: String
+    categorie: Int
+    type: String
+    available: String
+    startDate: Date
+    endDate: Date
+    orderDate: Date
+    deliveryDate: Date
+    firstCirculation: Date
+    registrationDate: Date
+    counter: Float
+    standardCost: Float
+    co2Emissions: Float
+    photo: Upload
+    photoName: String
+    employee: Int
+    entity: Int
+    active: Boolean
+}
+############# INPUT #############

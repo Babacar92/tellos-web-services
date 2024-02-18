@@ -1,0 +1,47 @@
+scalar Date
+scalar Upload
+scalar JSON
+
+############# QUERY #############
+type Query
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    uploadFile(data: UploadGqlFileInput): UploadType
+    uploadFiles(data: UploadMultipleGqlFileInput): [UploadType]
+}
+############# MUTATION #############
+
+############# TYPE #############
+type UploadType {
+    id: Int
+    originalName: String
+    name: String
+    directory: String
+    fullpath: String
+    fullpaths: JSON
+    directoriesNames: [String!]
+    extension: String
+    type: String
+    title: String
+    description: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input UploadGqlFileInput {
+    file: Upload
+}
+
+input UploadMultipleGqlFileInput {
+    files: [Upload]
+}
+############# INPUT #############

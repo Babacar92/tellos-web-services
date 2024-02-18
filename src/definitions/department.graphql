@@ -1,0 +1,59 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllDepartments(
+        filter: DepartmentFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): DepartmentPaginationResultType
+    findOneDepartment(id: Int!): DepartmentType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createDepartment(data: DepartmentCreateInput): DepartmentType
+    updateDepartment(data: DepartmentUpdateInput): DepartmentType
+    removeDepartment(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type DepartmentType {
+    id: Int
+    name: String
+    active: Boolean
+    employees: [Employee!]
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type DepartmentPaginationResultType {
+    result: [DepartmentType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input DepartmentFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    name: String
+    names: [String!]
+}
+
+input DepartmentCreateInput {
+    name: String
+}
+
+input DepartmentUpdateInput {
+    id: Int
+    name: String
+}
+############# INPUT #############

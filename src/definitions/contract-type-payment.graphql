@@ -1,0 +1,57 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllContractTypePayments(filter: ContractTypePaymentFilterInput, sort: JSON, pagination: PaginationInput): ContractTypePaymentPaginationResultType
+    findOneContractTypePayment(id: Int!): ContractTypePaymentType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createContractTypePayment(data: ContractTypePaymentCreateInput): ContractTypePaymentType
+    updateContractTypePayment(data: ContractTypePaymentUpdateInput): ContractTypePaymentType
+    removeContractTypePayment(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type ContractTypePaymentType {
+    id: Int
+    title: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type ContractTypePaymentPaginationResultType {
+    result: [ContractTypePaymentType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input ContractTypePaymentFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+}
+
+input ContractTypePaymentCreateInput {
+    title: String
+    active: Boolean
+}
+
+input ContractTypePaymentUpdateInput {
+    id: Int
+    title: String
+    active: Boolean
+}
+############# INPUT #############

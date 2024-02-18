@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #ebebed;">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body style="background-color: #ebebed;">
+        <table border="0" align="center">
+            <caption>
+                <h1>
+                    Liste des utilisateurs
+                </h1>
+            </caption>
+            <tr>
+                    {{#if header.username_c}}<th bgcolor="#fff" height="50px">{{header.username_c}}</th>{{/if}}
+                    {{#if header.firstname_c}}<th bgcolor="#fff" height="50px">{{header.firstname_c}}</th>{{/if}}
+                    {{#if header.lastname_c}}<th bgcolor="#fff" height="50px">{{header.lastname_c}}</th>{{/if}}
+                    {{#if header.emailPro_c}}<th bgcolor="#fff" height="50px">{{header.emailPro_c}}</th>{{/if}}
+            </tr>
+            {{#each message}}
+                <tr>
+                    {{#if USRNAME}}<td bgcolor="#f6f8fc" height="50px" align="center">{{username}}</td>{{/if}}
+                    {{#if FNAME}}<td bgcolor="#f6f8fc" height="50px" align="center">{{firstname}}</td>{{/if}}
+                    {{#if LNAME}}<td bgcolor="#f6f8fc" height="50px" align="center">{{lastname}}</td>{{/if}}
+                    {{#if EMAILP}}<td bgcolor="#f6f8fc" height="50px" align="center">{{emailPro}}</td>{{/if}}
+                </tr>
+            {{/each}}
+        </table>
+
+  </body>
+</html>

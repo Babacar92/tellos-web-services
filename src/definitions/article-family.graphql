@@ -1,0 +1,72 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllArticleFamily(filter: ArticleFamilyFilterInput, sort: JSON, pagination: PaginationInput): ArticleFamilyPaginationResultType
+    findAllArticleFamilyAvailableForChild(filter: ArticleFamilyFilterInput, sort: JSON, pagination: PaginationInput): ArticleFamilyPaginationResultType
+    findAllArticleFamilyAvailableForParent(filter: ArticleFamilyFilterInput, sort: JSON, pagination: PaginationInput): ArticleFamilyPaginationResultType
+    findOneArticleFamily(id: Int!): ArticleFamilyType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createArticleFamily(data: ArticleFamilyCreateInput): ArticleFamilyType
+    updateArticleFamily(data: ArticleFamilyUpdateInput): ArticleFamilyType
+    removeArticleFamily(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type ArticleFamilyType {
+    id: Int
+    sectionCode: SectionCodeType
+    parent: ArticleFamilyType
+    children: [ArticleFamilyType!]
+    label: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type ArticleFamilyPaginationResultType {
+    result: [ArticleFamilyType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input ArticleFamilyFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    label: String
+    labels: [String!]
+    sectionCode: Int
+    sectionCodes: [Int!]
+    parentId: Int
+    parentIds: Int
+}
+
+input ArticleFamilyCreateInput {
+    label: String
+    sectionCode: Int
+    parent: Int
+    children: [Int!]
+    active: Boolean
+}
+
+input ArticleFamilyUpdateInput {
+    id: Int
+    label: String
+    sectionCode: Int
+    parent: Int
+    children: [Int!]
+    active: Boolean
+}
+############# INPUT #############

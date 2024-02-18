@@ -1,0 +1,56 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllSupplierCategories(filter: SupplierCategoryFilterInput, sort: JSON, pagination: PaginationInput): SupplierCategoryPaginationResultType
+    findOneSupplierCategory(id: Int!): SupplierCategoryType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createSupplierCategory(data: SupplierCategoryCreateInput): SupplierCategoryType
+    updateSupplierCategory(data: SupplierCategoryUpdateInput): SupplierCategoryType
+    removeSupplierCategory(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type SupplierCategoryType {
+    id: Int
+    name: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type SupplierCategoryPaginationResultType {
+    result: [SupplierCategoryType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input SupplierCategoryFilterInput {
+    id: Int
+    ids: [Int!]
+    name: String
+    search: String
+}
+
+input SupplierCategoryCreateInput {
+    name: String
+    active: Boolean
+}
+
+input SupplierCategoryUpdateInput {
+    id: Int
+    name: String
+    active: Boolean
+}
+############# INPUT #############

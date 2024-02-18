@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #ebebed;">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body style="background-color: #ebebed;">
+        <table border="0" align="center" width="100%">
+            <caption>
+                <h1>
+                    Liste des clients
+                </h1>
+            </caption>
+            <tr>
+                    {{#if header.code_c}}<th bgcolor="#fff" height="50px">{{header.code_c}}</th>{{/if}}
+                    {{#if header.typology_c}}<th bgcolor="#fff" height="50px">{{header.typology_c}}</th>{{/if}}
+                    {{#if header.name_c}}<th bgcolor="#fff" height="50px">{{header.name_c}}</th>{{/if}}
+                    {{#if header.address_c}}<th bgcolor="#fff" height="50px">{{header.address_c}}</th>{{/if}}
+                    {{#if header.phone_c}}<th bgcolor="#fff" height="50px">{{header.phone_c}}</th>{{/if}}
+                    {{#if header.state_c}}<th bgcolor="#fff" height="50px">{{header.state_c}}</th>{{/if}}
+            </tr>
+            {{#each message}}
+                <tr>
+                    {{#if CODE}}<td bgcolor="#f6f8fc" height="50px" align="center">{{code}}</td>{{/if}}
+                    {{#if TYPE}}<td bgcolor="#f6f8fc" height="50px" align="center">{{typology}}</td>{{/if}}
+                    {{#if NAME}}<td bgcolor="#f6f8fc" height="50px" align="center">{{name}}</td>{{/if}}
+                    {{#if ADDRESS}}<td bgcolor="#f6f8fc" height="50px" align="center">{{address}}</td>{{/if}}
+                    {{#if PHONE}}<td bgcolor="#f6f8fc" height="50px" align="center">{{phone}}</td>{{/if}}
+                    {{#if STATE}}<td bgcolor="#f6f8fc" height="50px" align="center">{{state}}</td>{{/if}}
+                </tr>
+            {{/each}}
+        </table>
+
+  </body>
+</html>

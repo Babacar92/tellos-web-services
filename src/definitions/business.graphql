@@ -1,0 +1,235 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllBusinesses(
+        filter: BusinessFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): BusinessPaginationResultType
+    findOneBusiness(id: Int!): BusinessType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createBusiness(data: BusinessCreateInput): BusinessType
+    updateBusiness(data: BusinessUpdateInput): BusinessType
+    toggleEditable(data: BusinessToggleEditableInput): Boolean
+    removeBusiness(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type BusinessType {
+    id: Int
+    customer: CustomerType
+    paymentMode: BusinessPaymentModeType
+    paymentType: BusinessPaymentTypeType
+    tenderType: BusinessTenderTypeType
+    marketType: BusinessMarketTypeType
+    worksChief: Employee
+    worksManager: Employee
+    mainSiteManager: Employee
+    siteManager2: Employee
+    siteManager3: Employee
+    commercial: Employee
+    picture: UploadType
+    batches: [BusinessBatchType!]
+    email: String
+    code: String
+    label: String
+    externalCode: String
+    payingOwner: String
+    mainOwner: String
+    owner: String
+    origin: String
+    referenceCase: String
+    agency: String
+    address: String
+    postalCode: String
+    city: String
+    country: String
+    phone: String
+    website: String
+    gps: String
+    delegatedCustomer: String
+    economist: String
+    engineeringOffice: String
+    fuildEngineeringOffice: String
+    groundEngineeringOffice: String
+    controlOffice: String
+    pilot: String
+    safetyCoordinator: String
+    underCover: Boolean
+    bidBond: Boolean
+    estimatedAmount: Float
+    startDate: Date
+    endDate: Date
+    abandonedAt: Date
+    startDateStudy: Date
+    endDateStudy: Date
+    applicationDate: Date
+    retrieveDate: Date
+    limiteDate: Date
+    depositDate: Date
+    workDuration: Int
+    unit: String
+    type: String
+    status: String
+    isEditable: Boolean
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type BusinessPaginationResultType {
+    result: [BusinessType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input BusinessToggleEditableInput {
+    id: Int
+    value: Boolean
+}
+
+input BusinessFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    customerId: Int
+    customerIds: [Int!]
+    statuses: [String!]
+    types: [String!]
+    tenderTypes: [Int!]
+    marketTypes: [Int!]
+    dateLimiteFrom: Date
+    dateLimiteTo: Date
+    estimatedAmountFrom: Float
+    estimatedAmountTo: Float
+    isEditable: Boolean
+    isEditables: [Boolean!]
+}
+
+input BusinessCreateInput {
+    customer: Int
+    paymentMode: Int
+    paymentType: Int
+    tenderType: Int
+    marketType: Int
+    worksChief: Int
+    worksManager: Int
+    mainSiteManager: Int
+    siteManager2: Int
+    siteManager3: Int
+    commercial: Int
+    picture: Int
+    email: String
+    code: String
+    label: String
+    externalCode: String
+    payingOwner: String
+    mainOwner: String
+    owner: String
+    origin: String
+    referenceCase: String
+    agency: String
+    address: String
+    postalCode: String
+    city: String
+    country: String
+    phone: String
+    website: String
+    gps: String
+    delegatedCustomer: String
+    economist: String
+    engineeringOffice: String
+    fuildEngineeringOffice: String
+    groundEngineeringOffice: String
+    controlOffice: String
+    pilot: String
+    safetyCoordinator: String
+    underCover: Boolean
+    bidBond: Boolean
+    estimatedAmount: Float
+    startDate: Date
+    endDate: Date
+    startDateStudy: Date
+    endDateStudy: Date
+    applicationDate: Date
+    retrieveDate: Date
+    limiteDate: Date
+    depositDate: Date
+    workDuration: Int
+    unit: String
+    type: String
+    status: String
+    isEditable: Boolean
+    active: Boolean
+}
+
+input BusinessUpdateInput {
+    id: Int
+    customer: Int
+    paymentMode: Int
+    paymentType: Int
+    tenderType: Int
+    marketType: Int
+    worksChief: Int
+    worksManager: Int
+    mainSiteManager: Int
+    siteManager2: Int
+    siteManager3: Int
+    commercial: Int
+    picture: Int
+    email: String
+    code: String
+    label: String
+    externalCode: String
+    payingOwner: String
+    mainOwner: String
+    owner: String
+    origin: String
+    referenceCase: String
+    agency: String
+    address: String
+    postalCode: String
+    city: String
+    country: String
+    phone: String
+    website: String
+    gps: String
+    delegatedCustomer: String
+    economist: String
+    engineeringOffice: String
+    fuildEngineeringOffice: String
+    groundEngineeringOffice: String
+    controlOffice: String
+    pilot: String
+    safetyCoordinator: String
+    underCover: Boolean
+    bidBond: Boolean
+    estimatedAmount: Float
+    startDate: Date
+    endDate: Date
+    startDateStudy: Date
+    endDateStudy: Date
+    applicationDate: Date
+    retrieveDate: Date
+    limiteDate: Date
+    depositDate: Date
+    workDuration: Int
+    unit: String
+    type: String
+    status: String
+    isEditable: Boolean
+    abandon: Boolean
+    active: Boolean
+}
+############# INPUT #############

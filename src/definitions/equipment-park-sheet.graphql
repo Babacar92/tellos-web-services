@@ -1,0 +1,136 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllPaginatedEquipmentParkSheets(
+        filter: EquipmentParkSheetFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EquipmentParkSheetPaginationResultType
+    findOneEquipmentParkSheet(id: Int!): EquipmentParkSheet
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createEquipmentParkSheet(
+        data: CreateEquipmentParkSheetInput
+    ): EquipmentParkSheet
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentParkSheet {
+    id: Int!
+
+    equipmentPark: EquipmentPark!
+
+    type: SheetTypeEnum!
+
+    returnDate: Date!
+
+    user: Employee
+
+    controller: LoginEntity
+
+    counter: Float
+
+    fuelLevel: String
+
+    generalState: String
+
+    interiorCleanliness: String
+
+    exteriorCleanliness: String
+
+    observation: String
+
+    thumnailCritAir: Boolean
+
+    thumnailCritAirNumber: String
+
+    insurance: Boolean
+
+    failureCard: Boolean
+
+    totalCard: Boolean
+
+    badge: Boolean
+
+    parkNumber: String
+
+    photos: [UploadType]
+
+    userSignature: UploadType
+
+    controllerSignature: UploadType
+}
+
+type EquipmentParkSheetPaginationResultType {
+    result: [EquipmentParkSheet!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+
+input CreateEquipmentParkSheetInput {
+    equipmentPark: Int!
+
+    type: SheetTypeEnum!
+
+    returnDate: Date!
+
+    controller: Int
+
+    counter: Float
+
+    fuelLevel: String
+
+    generalState: String
+
+    interiorCleanliness: String
+
+    exteriorCleanliness: String
+
+    observation: String
+
+    thumnailCritAir: Boolean
+
+    thumnailCritAirNumber: String
+
+    insurance: Boolean
+
+    failureCard: Boolean
+
+    totalCard: Boolean
+
+    badge: Boolean
+
+    photos: [Upload]
+
+    userSignature: Upload
+
+    controllerSignature: Upload
+}
+
+input EquipmentParkSheetFilterInput {
+    id: Int
+    ids: [Int]
+    equipmentParkId: Int
+    equipmentParkIds: [Int]
+    userId: Int
+    userIds: [Int]
+}
+
+############# INPUT #############
+
+############# ENUM #############
+enum SheetTypeEnum {
+    Delivery
+    Restitution
+    Control
+}
+
+############# ENUM #############

@@ -1,0 +1,59 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllPurchaseAccounts(filter: PurchaseAccountFilterInput, sort: JSON, pagination: PaginationInput):PurchaseAccountPaginationResultType
+    findOnePurchaseAccount(id: Int!): PurchaseAccountType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createPurchaseAccount(data: PurchaseAccountCreateInput): PurchaseAccountType
+    updatePurchaseAccount(data: PurchaseAccountUpdateInput): PurchaseAccountType
+    removePurchaseAccount(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type PurchaseAccountType {
+    id: Int
+    account: String
+    sectionCode: SectionCodeType
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type PurchaseAccountPaginationResultType {
+    result: [PurchaseAccountType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input PurchaseAccountFilterInput {
+    ids:[Int!]
+    search:String
+    sectionCodeId:Int
+    sectionCodeIds:[Int!]
+}
+
+input PurchaseAccountCreateInput {
+    account: String
+    sectionCode:Int
+    
+}
+
+input PurchaseAccountUpdateInput {
+    id: Int
+    sectionCode: Int
+    account: String
+    active: Boolean
+}
+############# INPUT #############

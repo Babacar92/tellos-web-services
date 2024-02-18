@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #ebebed;">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body style="background-color: #ebebed;">
+        <table border="0" align="center">
+            <caption>
+                <h1>
+                    Affaires
+                </h1>
+            </caption>
+            <tr>
+                    {{#if header.type_c}}<th bgcolor="#fff" height="50px">{{header.typec_c}}</th>{{/if}}
+                    {{#if header.code_c}}<th bgcolor="#fff" height="50px">{{header.code_c}}</th>{{/if}}
+                    {{#if header.label_c}}<th bgcolor="#fff" height="50px">{{header.label_c}}</th>{{/if}}
+                    {{#if header.maitreOuvrage_c}}<th bgcolor="#fff" height="50px">{{header.maitreOuvrage_c}}</th>{{/if}}
+                    {{#if header.montantEstime_c}}<th bgcolor="#fff" height="50px">{{header.montantEstime_c}}</th>{{/if}}
+                    {{#if header.typeAppelOffre_c}}<th bgcolor="#fff" height="50px">{{header.typeAppelOffre_c}}</th>{{/if}}
+                    {{#if header.typeMarche_c}}<th bgcolor="#fff" height="50px">{{header.typeMarche_c}}</th>{{/if}}
+                    {{#if header.dateLimite_c}}<th bgcolor="#fff" height="50px">{{header.dateLimite_c}}</th>{{/if}}
+                    {{#if header.status_c}}<th bgcolor="#fff" height="50px">{{header.status_c}}</th>{{/if}}
+            </tr>
+            {{#each message}}
+                <tr>
+                    {{#if TYPE}}<td bgcolor="#f6f8fc" height="50px" align="center">{{type}}</td>{{/if}}
+                    {{#if CODE}}<td bgcolor="#f6f8fc" height="50px" align="center">{{code}}</td>{{/if}}
+                    {{#if LABEL}}<td bgcolor="#f6f8fc" height="50px" align="center">{{label}}</td>{{/if}}
+                    {{#if MOA}}<td bgcolor="#f6f8fc" height="50px" align="center">{{maitreOuvrage}}</td>{{/if}}
+                    {{#if MEST}}<td bgcolor="#f6f8fc" height="50px" align="center">{{montantEstime}}</td>{{/if}}
+                    {{#if TAO}}<td bgcolor="#f6f8fc" height="50px" align="center">{{typeAppelOffre}}</td>{{/if}}
+                    {{#if TYPM}}<td bgcolor="#f6f8fc" height="50px" align="center">{{typeMarche}}</td>{{/if}}
+                    {{#if DATEL}}<td bgcolor="#f6f8fc" height="50px" align="center">{{dateLimite}}</td>{{/if}}
+                    {{#if STAT}}<td bgcolor="#f6f8fc" height="50px" align="center">{{status}}</td>{{/if}}
+                </tr>
+            {{/each}}
+        </table>
+
+  </body>
+</html>

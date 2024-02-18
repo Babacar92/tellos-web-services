@@ -1,0 +1,133 @@
+scalar Date
+scalar Upload
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findEntities(
+        filter: EntityFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EntityPaginationResultType
+    findOrganigrammes(
+        filter: EntityFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EntityPaginationResultType
+    findEntitiesWithoutOrganigrammes: [EntitiesForSelectType]
+    findInformations(
+        filter: EntityFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EntityPaginationResultType
+    findEntitiesWithoutInformations: [EntitiesForSelectType]
+    findOneEntity(id: Int!): EntityType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createEntity(data: EntityCreateInput): EntityType
+    updateEntity(data: EntityUpdateInput): EntityType
+    removeEntity(data: RemoveItemInput): Boolean
+    removeOrganigramme(id: Int!): Boolean
+    removeInformation(id: Int!): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EntityType {
+    id: Int
+    logo: UploadType
+    organigramme: UploadType
+    label: String
+    identifierNumber: String
+    type: String
+    membershipNumber: String
+    description: String
+    linkedin: String
+    colorGradiantLeft: String
+    colorGradiantRight: String
+    colorHeader: String
+    colorSticker: String
+    employees: [Employee!]
+    totalEmployees: Int
+    creationDate: Date
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type EntityPaginationResultType {
+    result: [EntityType!]
+    pagination: PaginationType
+}
+
+type EntitiesForSelectType {
+    id: Int
+    label: String
+}
+############# TYPE #############
+
+############# INPUT #############
+input EntityFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    label: String
+    labels: [String!]
+    colorGradiantLeft: String
+    colorsGradiantLeft: [String!]
+    colorGradiantRight: String
+    colorsGradiantRight: [String!]
+    colorHeader: String
+    colorsHeader: [String!]
+    colorSticker: String
+    colorsSticker: [String!]
+    totalEmployees: Int
+    description: String
+    active: Boolean
+    withoutId: Int
+    withoutIds: [Int!]
+}
+
+input EntityCreateInput {
+    label: String
+    colorGradiantLeft: String
+    colorGradiantRight: String
+    colorHeader: String
+    colorSticker: String
+    description: String
+    identifierNumber: String
+    logo: Upload
+    type: String
+    membershipNumber: String
+    organigramme: Upload
+    linkedin: String
+    totalEmployees: Int
+    creationDate: Date
+    active: Boolean
+}
+
+input EntityUpdateInput {
+    id: Int
+    label: String
+    colorGradiantLeft: String
+    colorGradiantRight: String
+    colorHeader: String
+    colorSticker: String
+    description: String
+    identifierNumber: String
+    type: String
+    membershipNumber: String
+    logo: Upload
+    organigramme: Upload
+    linkedin: String
+    totalEmployees: Int
+    creationDate: Date
+    active: Boolean
+}
+############# INPUT #############

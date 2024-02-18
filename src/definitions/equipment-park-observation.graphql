@@ -1,0 +1,67 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllPaginatedEquipmentParkObservations(
+        filter: EquipmentParkObservationFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EquipmentParkObservationPaginationResultType
+    findOneEquipmentParkObservation(id: Int!): EquipmentParkObservation
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createEquipmentParkObservation(
+        data: CreateEquipmentParkObservationInput
+    ): EquipmentParkObservation
+    updateEquipmentParkObservation(
+        data: UpdateEquipmentParkObservationInput
+    ): EquipmentParkObservation
+    deleteEquipmentParkObservation(id: Int!): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentParkObservation {
+    id: Int!
+    observation: String
+    equipmentPark: EquipmentPark
+    date: Date
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type EquipmentParkObservationPaginationResultType {
+    result: [EquipmentParkObservation!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+
+input CreateEquipmentParkObservationInput {
+    equipmentPark: Int!
+    observation: String
+    date: Date
+}
+
+input UpdateEquipmentParkObservationInput {
+    id: Int!
+    observation: String
+}
+
+input EquipmentParkObservationFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    startDate: Date
+    endDate: Date
+}
+
+############# INPUT #############

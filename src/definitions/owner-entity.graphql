@@ -1,0 +1,78 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+  findAllOwnerEntities(filter: OwnerEntityFilterInput, sort: JSON, pagination: PaginationInput): OwnerEntityPaginationResult
+  findOneOwnerEntity(id: Int!): OwnerEntity
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+  createOwnerEntity(data: OwnerEntityCreateInput): OwnerEntity
+  updateOwnerEntity(data: OwnerEntityUpdateInput): OwnerEntity
+  removeOwnerEntity(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type OwnerEntity {
+  id: Int
+  name: String
+  address: String
+  addressBis: String
+  postcode: String
+  city: String
+  country: String
+  phone: String
+  siret: String
+  ape: String
+  createdAt: Date
+  updatedAt: Date
+  deletedAt: Date
+  createdBy: String
+  updatedBy: String
+}
+
+type OwnerEntityPaginationResult {
+  result: [OwnerEntity!]
+  pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input OwnerEntityFilterInput {
+  search: String
+  id: Int
+  ids: [Int!]
+  name: String
+  names: [String!]
+}
+
+input OwnerEntityCreateInput {
+  name: String
+  address: String
+  addressBis: String
+  postcode: String
+  city: String
+  country: String
+  phone: String
+  siret: String
+  ape: String
+}
+
+input OwnerEntityUpdateInput {
+  id: Int
+  name: String
+  address: String
+  addressBis: String
+  postcode: String
+  city: String
+  country: String
+  phone: String
+  siret: String
+  ape: String
+}
+############# INPUT #############

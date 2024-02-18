@@ -1,0 +1,57 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllContractJobDescriptions(filter: ContractJobDescriptionFilterInput, sort: JSON, pagination: PaginationInput): ContractJobDescriptionPaginationResultType
+    findOneContractJobDescription(id: Int!): ContractJobDescriptionType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createContractJobDescription(data: ContractJobDescriptionCreateInput): ContractJobDescriptionType
+    updateContractJobDescription(data: ContractJobDescriptionUpdateInput): ContractJobDescriptionType
+    removeContractJobDescription(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type ContractJobDescriptionType {
+    id: Int
+    title: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type ContractJobDescriptionPaginationResultType {
+    result: [ContractJobDescriptionType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input ContractJobDescriptionFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+}
+
+input ContractJobDescriptionCreateInput {
+    title: String
+    active: Boolean
+}
+
+input ContractJobDescriptionUpdateInput {
+    id: Int
+    title: String
+    active: Boolean
+}
+############# INPUT #############

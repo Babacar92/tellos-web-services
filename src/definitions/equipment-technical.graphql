@@ -1,0 +1,114 @@
+scalar Date
+
+############# QUERY #############
+type Query {
+    findEquipmentTechnicalByEquipmentPark(
+        equipmentPark: Int!
+    ): EquipmentTechnical
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    updateEquipmentTechnical(
+        data: UpdateEquipmentTechnicalInput
+    ): EquipmentTechnical
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentTechnical {
+    id: Int!
+    equipmentPark: EquipmentPark!
+    tiresType: TiresTypeEnum
+    tonnage: Float
+    genre: EquipmentTechnicalGenre
+    thumbnailCritAir: EquipmentTechnicalThumbnail
+    brand: String
+    type: String
+    series: String
+    sheetMetal: String
+    power: Float
+    seats: Int
+    consumption: Float
+    ptac: Float
+    pv: Float
+    ptra: Float
+    energy: String
+    engine: String
+    roadSpeed: Float
+    engineSerialNumber: String
+    box: String
+    boxSerialNumber: String
+    length: Float
+    width: Float
+    height: Float
+
+    ###
+    pneumaticTypeOne: GoodType
+    quantityOne: Float
+    pneumaticTypeTwo: GoodType
+    quantityTwo: Float
+    gearboxLubricantType: GoodType
+    gearboxLubricantQuantity: Float
+    bridgeLubricantType: GoodType
+    bridgeLubricantQuantity: Float
+    engineLubricantType: GoodType
+    engineLubricantQuantity: Float
+    daLubricantType: GoodType
+    daLubricantQuantity: Float
+    hydrolicOilType: GoodType
+    hydrolicOilQuantity: Float
+}
+############# TYPE #############
+
+############# INPUT #############
+input UpdateEquipmentTechnicalInput {
+    equipmentPark: Int!
+    tiresType: TiresTypeEnum
+    tonnage: Float
+    genre: Int
+    thumbnailCritAir: Int
+    brand: String
+    type: String
+    series: String
+    sheetMetal: String
+    power: Float
+    seats: Int
+    consumption: Float
+    ptac: Float
+    pv: Float
+    ptra: Float
+    energy: String
+    engine: String
+    roadSpeed: Float
+    engineSerialNumber: String
+    box: String
+    boxSerialNumber: String
+    length: Float
+    width: Float
+    height: Float
+    ##
+    pneumaticTypeOne: Int
+    quantityOne: Float
+    pneumaticTypeTwo: Int
+    quantityTwo: Float
+    gearboxLubricantType: Int
+    gearboxLubricantQuantity: Float
+    bridgeLubricantType: Int
+    bridgeLubricantQuantity: Float
+    engineLubricantType: Int
+    engineLubricantQuantity: Float
+    daLubricantType: Int
+    daLubricantQuantity: Float
+    hydrolicOilType: Int
+    hydrolicOilQuantity: Float
+}
+############# INPUT #############
+
+############# ENUM #############
+enum TiresTypeEnum {
+    Tire
+    Caterpilar
+}
+############# INPUT #############

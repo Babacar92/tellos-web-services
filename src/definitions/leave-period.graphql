@@ -1,0 +1,72 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllLeavePeriods(
+        filter: LeavePeriodFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): LeavePeriodPaginationResultType
+    findOneLeavePeriod(id: Int!): LeavePeriodType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createLeavePeriod(data: LeavePeriodCreateInput): LeavePeriodType
+    updateLeavePeriod(data: LeavePeriodUpdateInput): LeavePeriodType
+    removeLeavePeriod(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type LeavePeriodType {
+    id: Int
+    employee: Employee
+    active: Boolean
+    balanceLeave: Float
+    dateFrom: Date
+    dateTo: Date
+    countAcquiredLeave: Float
+    countUsableLeave: Float
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type LeavePeriodPaginationResultType {
+    result: [LeavePeriodType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input LeavePeriodFilterInput {
+    ids: [Int!]
+    search: String
+    employeeId: Int
+    employeeIds: [Int!]
+}
+
+input LeavePeriodCreateInput {
+    employee: Int
+    dateFrom: Date
+    dateTo: Date
+    countAcquiredLeave: Float
+    countUsableLeave: Float
+    active: Boolean
+}
+
+input LeavePeriodUpdateInput {
+    id: Int
+    employee: Int
+    dateFrom: Date
+    dateTo: Date
+    countUsableLeave: Float
+    countAcquiredLeave: Float
+    active: Boolean
+}
+############# INPUT #############

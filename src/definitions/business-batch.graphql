@@ -1,0 +1,76 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllBusinessBatches(
+        filter: BusinessBatchFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): BusinessBatchPaginationResultType
+    findOneBusinessBatch(id: Int!): BusinessBatchType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createBusinessBatch(data: BusinessBatchCreateInput): BusinessBatchType
+    updateBusinessBatch(data: BusinessBatchUpdateInput): BusinessBatchType
+    removeBusinessBatch(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type BusinessBatchType {
+    id: Int
+    business: BusinessType
+    status: BusinessBatchStatusType
+    commercial: Employee
+    label: String
+    apology: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type BusinessBatchPaginationResultType {
+    result: [BusinessBatchType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input BusinessBatchFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    label: String
+    labels: [String!]
+    businessId: Int
+    businessIds: [Int!]
+    statusesIds: [Int!]
+    apology: String
+}
+
+input BusinessBatchCreateInput {
+    business: Int
+    status: Int
+    commercial: Int
+    label: String
+    apology: String
+    active: Boolean
+}
+
+input BusinessBatchUpdateInput {
+    id: Int
+    business: Int
+    status: Int
+    commercial: Int
+    label: String
+    apology: String
+    active: Boolean
+}
+############# INPUT #############

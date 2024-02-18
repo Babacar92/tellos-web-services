@@ -1,0 +1,62 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllInseeCodes(filter: InseeCodeFilterInput, sort: JSON, pagination: PaginationInput): InseeCodePaginationResultType
+    findOneInseeCode(id: Int!): InseeCodeType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createInseeCode(data: InseeCodeCreateInput): InseeCodeType
+    updateInseeCode(data: InseeCodeUpdateInput): InseeCodeType
+    removeInseeCode(data: RemoveItemInput): Boolean
+    removeExpensePostInInseeCode(id: Int!): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type InseeCodeType {
+    id: Int
+    code: String
+    name: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type InseeCodePaginationResultType {
+    result: [InseeCodeType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input InseeCodeFilterInput {
+    id: Int
+    ids:[Int!]
+    search:String
+    name: String
+    names:[String!]
+    code: String
+    codes: [String!]
+}
+
+input InseeCodeCreateInput {
+    code: String
+    name: String
+}
+
+input InseeCodeUpdateInput {
+    id: Int
+    code: String
+    name: String
+    active: Boolean
+}
+############# INPUT #############

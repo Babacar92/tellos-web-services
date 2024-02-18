@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #ebebed;">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body style="background-color: #ebebed;">
+    <table class="container" width="80%" align="center" border="0" cellspacing="0" cellpadding="0" style="overflow: hidden;border-radius: 5px;background-color: white;color: #57575c;">
+        <thead>
+            <tr>
+                <th align="center" id="header-logo" style="background-color: #004578;padding-top: 20px;padding-bottom: 10px;">
+                    <a href="{{ env 'PROJECT_WEBSITE' }}" id="header-logo" title="site_name">
+                        <img src="{{ imgPath 'logo.png' }}" alt="Logo" width="40%">
+                    </a>
+                </th>
+            </tr>
+            <tr>
+                <th align="center" id="header-title" style="padding-left: 20px;padding-right: 20px;">
+                    <h1 style="font-size: 20px;margin: 0;padding: 0;padding-top: 10px;padding-bottom: 10px;border-bottom: solid 1px #ebebed;">
+                        {{> title}}
+                    </h1>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td align="center" id="body-content" style="padding-top: 20px;padding-bottom: 20px;padding-left: 20px;padding-right: 20px;">
+                    {{> body}}
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td align="center" id="footer-content" style="padding-bottom: 20px;padding-left: 20px;padding-right: 20px;">
+                    <div id="footer-sub-content" style="padding-top: 20px;border-top: solid 1px #ededed;">
+                      <a id="visite_our_website" href="{{ env 'PROJECT_WEBSITE' }}" title="{{ trans key='Visite our website' }}" style="color: white;text-decoration: none;background-color: #004578;padding-top: 10px;padding-bottom: 10px;padding-left: 20px;padding-right: 20px;display: inline-block;border-radius: 3px;">
+                            {{ trans key='Visite our website' }}
+                      </a>
+                      <div id="site_name" class="footer-row ft-site_name" title="{{ site_name }}" style="margin-top: 10px;">
+                        <b><i>{{ site_name }}</i></b>
+                      </div>
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+  </body>
+</html>

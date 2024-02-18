@@ -1,0 +1,107 @@
+scalar Date
+scalar JSON
+scalar Upload
+
+############# QUERY #############
+type Query {
+    findAllEmployeeDocuments(
+        filter: EmployeeDocumentFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EmployeeDocumentPaginationResultType
+    findAllEmployeeDocumentsRequireSignature(
+        filter: EmployeeDocumentFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EmployeeDocumentPaginationResultType
+    findAllEmployeeDocumentsRequireNotSignature(
+        filter: EmployeeDocumentFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EmployeeDocumentPaginationResultType
+    findOneEmployeeDocument(id: Int!): EmployeeDocumentType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createEmployeeDocument(
+        data: EmployeeDocumentCreateInput
+    ): EmployeeDocumentType
+    updateEmployeeDocument(
+        data: EmployeeDocumentUpdateInput
+    ): EmployeeDocumentType
+    removeEmployeeDocument(data: RemoveItemInput): Boolean
+    signEmployeeDocument(data: EmployeeDocumentSignedInput): Boolean
+    acceptEmployeeDocument(id: Int!): Boolean
+    refuseEmployeeDocument(id: Int!): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EmployeeDocumentType {
+    id: Int
+    type: DocumentTypeType
+    file: UploadType
+    employee: Employee
+    validateDate: Date
+    dunningDate: Date
+    status: String
+    requireEmployeeSignature: Boolean
+    requireEmployeeUpload: Boolean
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type EmployeeDocumentPaginationResultType {
+    result: [EmployeeDocumentType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input EmployeeDocumentFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    employeeId: Int
+    requireSignature: Boolean
+    type: Int
+    types: [Int!]
+    status: String
+    statuses: [String!]
+}
+
+input EmployeeDocumentCreateInput {
+    type: Int
+    employee: Int
+    file: Upload
+    validateDate: Date
+    dunningDate: Date
+    requireEmployeeSignature: Boolean
+    requireEmployeeUpload: Boolean
+    active: Boolean
+}
+
+input EmployeeDocumentUpdateInput {
+    id: Int
+    type: Int
+    employee: Int
+    file: Upload
+    validateDate: Date
+    dunningDate: Date
+    requireEmployeeSignature: Boolean
+    requireEmployeeUpload: Boolean
+    active: Boolean
+}
+
+input EmployeeDocumentSignedInput {
+    id: Int
+    signed: Boolean
+    file: Upload
+}
+############# INPUT #############

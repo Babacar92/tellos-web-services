@@ -1,0 +1,53 @@
+scalar JSON
+
+################## Query ##################
+type Query {
+    getCountries: [CountryType!]
+    getCountry(code: String): CountryType
+    getCitiesOfCountry(countryCode: String): [CountryCityType!]
+    getCountriesForDropdown: [DropdownResponseType!]
+    getCitiesOfCountryForDropdown(countryCode: String): [DropdownResponseType!]
+}
+################## Query ##################
+
+################## Mutation ##################
+# type Mutation
+################## Mutation ##################
+
+################## Type ##################
+type CountryType {
+    name: String
+    isoCode: String
+    flag: String
+    phonecode: String
+    currency: String
+    latitude: String
+    longitude: String
+    timezones: [CountryTimeZoneType!]
+}
+
+type CountryTimeZoneType {
+    zoneName: String
+    gmtOffset: Int
+    gmtOffsetName: String
+    abbreviation: String
+    tzName: String
+}
+
+type CountryCityType {
+    name: String
+    countryCode: String
+    stateCode: String
+    latitude: String
+    longitude: String
+}
+
+type DropdownResponseType {
+    value: String
+    label: String
+}
+################## Type ##################
+
+################## Input ##################
+
+################## Input ##################

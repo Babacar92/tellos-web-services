@@ -1,0 +1,75 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllBusinessBudgets(filter: BusinessBudgetFilterInput, sort: JSON, pagination: PaginationInput): BusinessBudgetPaginationResultType
+    findOneBusinessBudget(id: Int!): BusinessBudgetType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createBusinessBudget(data: BusinessBudgetCreateInput): BusinessBudgetType
+    updateBusinessBudget(data: BusinessBudgetUpdateInput): BusinessBudgetType
+    removeBusinessBudget(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type BusinessBudgetType {
+    id: Int
+    entity: EntityType
+    business: BusinessType
+    work: String
+    htPrice: Float
+    margin: Float
+    htMargin: Float
+    htTotal: Float
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type BusinessBudgetPaginationResultType {
+    result: [BusinessBudgetType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input BusinessBudgetFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    business: Int
+    businesses: [Int!]
+}
+
+input BusinessBudgetCreateInput {
+    entity: Int
+    business: Int
+    work: String
+    htPrice: Float
+    margin: Float
+    htMargin: Float
+    htTotal: Float
+    active: Boolean
+}
+
+input BusinessBudgetUpdateInput {
+    id: Int
+    entity: Int
+    business: Int
+    work: String
+    htPrice: Float
+    margin: Float
+    htMargin: Float
+    htTotal: Float
+    active: Boolean
+}
+############# INPUT #############

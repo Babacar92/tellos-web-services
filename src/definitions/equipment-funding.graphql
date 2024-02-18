@@ -1,0 +1,54 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+  findAllEquipmentFundings(filter: EquipmentFundingFilterInput, sort: JSON, pagination: PaginationInput): EquipmentFundingPaginationResult
+  findOneEquipmentFunding(id: Int!): EquipmentFunding
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+  createEquipmentFunding(data: EquipmentFundingCreateInput): EquipmentFunding
+  updateEquipmentFunding(data: EquipmentFundingUpdateInput): EquipmentFunding
+  removeEquipmentFunding(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentFunding {
+  id: Int
+  name: String
+  createdAt: Date
+  updatedAt: Date
+  deletedAt: Date
+  createdBy: String
+  updatedBy: String
+}
+
+type EquipmentFundingPaginationResult {
+  result: [EquipmentFunding!]
+  pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input EquipmentFundingFilterInput {
+  search: String
+  id: Int
+  ids: [Int!]
+  name: String
+  names: [String!]
+}
+
+input EquipmentFundingCreateInput {
+  name: String
+}
+
+input EquipmentFundingUpdateInput {
+  id: Int
+  name: String
+}
+############# INPUT #############

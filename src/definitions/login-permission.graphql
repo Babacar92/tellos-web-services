@@ -1,0 +1,66 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllLoginPermissions(filter: LoginPermissionFilterInput, sort: JSON, pagination: PaginationInput): LoginPermissionPaginationResultType
+    listLoginPermissions(filter: LoginPermissionFilterInput, sort: JSON): [LoginPermissionType!]
+    findOneLoginPermission(id: Int!): LoginPermissionType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createLoginPermission(data: LoginPermissionCreateInput): LoginPermissionType
+    updateLoginPermission(data: LoginPermissionUpdateInput): LoginPermissionType
+    removeLoginPermission(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type LoginPermissionType {
+    id: Int
+    login: LoginEntity
+    entity: EntityType
+    permission: PermissionType
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type LoginPermissionPaginationResultType {
+    result: [LoginPermissionType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input LoginPermissionFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    loginId: Int
+    entityId: Int
+    permissionId: Int
+    permissionName: String
+}
+
+input LoginPermissionCreateInput {
+    login: Int
+    entity: Int
+    permission: Int
+    active: Boolean
+}
+
+input LoginPermissionUpdateInput {
+    id: Int
+    login: Int
+    entity: Int
+    permission: Int
+    active: Boolean
+}
+############# INPUT #############

@@ -1,0 +1,54 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+  findAllEquipmentTechnicalThumbnails(filter: EquipmentTechnicalThumbnailFilterInput, sort: JSON, pagination: PaginationInput): EquipmentTechnicalThumbnailPaginationResult
+  findOneEquipmentTechnicalThumbnail(id: Int!): EquipmentTechnicalThumbnail
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+  createEquipmentTechnicalThumbnail(data: EquipmentTechnicalThumbnailCreateInput): EquipmentTechnicalThumbnail
+  updateEquipmentTechnicalThumbnail(data: EquipmentTechnicalThumbnailUpdateInput): EquipmentTechnicalThumbnail
+  removeEquipmentTechnicalThumbnail(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentTechnicalThumbnail {
+  id: Int
+  value: String
+  createdAt: Date
+  updatedAt: Date
+  deletedAt: Date
+  createdBy: String
+  updatedBy: String
+}
+
+type EquipmentTechnicalThumbnailPaginationResult {
+  result: [EquipmentTechnicalThumbnail!]
+  pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input EquipmentTechnicalThumbnailFilterInput {
+  search: String
+  id: Int
+  ids: [Int!]
+  value: String
+  values: [String!]
+}
+
+input EquipmentTechnicalThumbnailCreateInput {
+  value: String!
+}
+
+input EquipmentTechnicalThumbnailUpdateInput {
+  id: Int
+  value: String
+}
+############# INPUT #############

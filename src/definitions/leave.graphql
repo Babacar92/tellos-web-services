@@ -1,0 +1,120 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllLeaves(
+        filter: LeaveFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): LeavePaginationResultType
+    findOneLeave(id: Int!): LeaveType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createLeave(data: LeaveCreateInput): LeaveType
+    updateLeave(data: LeaveUpdateInput): LeaveType
+    validateLeave(data: ValidateLeaveInput): LeaveType
+    removeLeave(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type LeaveType {
+    id: Int
+    motive: String
+    startDay: String
+    endDay: String
+    entity: Employee
+    distributions: [LeaveDistributionType!]
+    gender: String
+    contract: String
+    service: DepartmentType
+    requestDate: Date
+    numberDays: Float
+    year: Int
+    employee: Employee
+    decisionMaker: Employee
+    leavePeriod: LeavePeriodType
+    decision: String
+    active: Boolean
+    startDate: Date
+    endDate: Date
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type LeavePaginationResultType {
+    result: [LeaveType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input LeaveFilterInput {
+    ids: [Int!]
+    search: String
+    employeeIds: [Int!]
+    employeeId: Int
+    decisionMakerId: Int
+    decisionMakerIds: [Int!]
+    leavePeriodId: Int
+    leavePeriodIds: [Int!]
+    gender: String
+    genders: [String!]
+    contract: String
+    contracts: [String!]
+    decision: String
+    decisions: [String!]
+    serviceId: Int
+    serviceIds: [Int!]
+    entityId: Int
+    entityIds: [Int!]
+    hasNotDecisionMaker: Boolean
+}
+
+input LeaveCreateInput {
+    motive: String
+    leavePeriod: Int
+    types: [LeaveDistributionCreateInput!]
+    entity: Int
+    gender: String
+    contract: String
+    service: Int
+    startDay: String
+    endDay: String
+    startDate: Date
+    endDate: Date
+}
+
+input LeaveUpdateInput {
+    id: Int
+    leavePeriod: Int
+    motive: String
+    types: [LeaveDistributionCreateInput!]
+    type: String
+    entity: Int
+    gender: String
+    contract: String
+    service: Int
+    startDay: String
+    endDay: String
+    startDate: Date
+    endDate: Date
+    active: Boolean
+    #decision:String
+}
+
+input ValidateLeaveInput {
+    id: Int
+    ids: [Int!]
+    motive: String
+    decision: String
+}
+
+############# INPUT #############

@@ -1,0 +1,65 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllExpensePosts(filter: ExpensePostFilterInput, sort: JSON, pagination: PaginationInput): ExpensePostPaginationResultType
+    findOneExpensePost(id: Int!): ExpensePostType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createExpensePost(data: ExpensePostCreateInput): ExpensePostType
+    updateExpensePost(data: ExpensePostUpdateInput): ExpensePostType
+    removeExpensePost(data: RemoveItemInput): Boolean
+    addSectionCodeIntoExpensePost(data: SectionCodeIntoExpensePostInput): ExpensePostType
+}
+############# MUTATION #############
+
+############# TYPE #############
+type ExpensePostType {
+    id: Int
+    name: String
+    active: Boolean
+    sectionCodes: [SectionCodeType!]
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type ExpensePostPaginationResultType {
+    result: [ExpensePostType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input ExpensePostFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    name: String
+    names: [String!]
+}
+
+input ExpensePostCreateInput {
+    name: String
+    active: Boolean
+}
+
+input ExpensePostUpdateInput {
+    id: Int
+    name: String
+    sectionCodes: [Int!]
+    active: Boolean
+}
+
+input SectionCodeIntoExpensePostInput {
+    expensePostId: Int
+    sectionCodeId: Int
+}
+############# INPUT #############

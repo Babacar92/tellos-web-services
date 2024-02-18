@@ -1,0 +1,101 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllMedicalVisits(
+        filter: MedicalVisitFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): MedicalVisitPaginationResultPath
+    findOneMedicalVisit(id: Int!): MedicalVisitType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createMedicalVisit(data: MedicalVisitCreateInput): MedicalVisitType
+    updateMedicalVisit(data: MedicalVisitUpdateInput): MedicalVisitType
+    removeMedicalVisit(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type MedicalVisitType {
+    id: Int
+    job: String
+    contract: String
+    entity: Employee
+    statut: String
+    placeOfTheMedicalvisit: String
+    contraindication: String
+    CareerPaths: [CareerPathType!]
+    startDate: Date
+    endDate: Date
+    lastDateMedicalVisit: Date
+    nextDateMedicalVisit: Date
+    service: DepartmentType
+    file: UploadType
+    employee: Employee
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type MedicalVisitPaginationResultPath {
+    result: [MedicalVisitType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input MedicalVisitFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    employeeId: Int
+    employeeIds: [Int!]
+    serviceId: Int
+    serviceIds: [Int!]
+    entity: Int
+    entities: [Int!]
+}
+
+input MedicalVisitCreateInput {
+    employee: Int
+    job: String
+    contract: String
+    entity: Int
+    statut: String
+    placeOfTheMedicalvisit: String
+    contraindication: String
+    lastDateMedicalVisit: Date
+    nextDateMedicalVisit: Date
+    file: Upload
+    fileName: String
+    startDate: Date
+    endDate: Date
+    active: Boolean
+}
+
+input MedicalVisitUpdateInput {
+    id: Int
+    employee: Int
+    job: String
+    contract: String
+    entity: Int
+    statut: String
+    placeOfTheMedicalvisit: String
+    contraindication: String
+    lastDateMedicalVisit: Date
+    nextDateMedicalVisit: Date
+    file: Upload
+    fileName: String
+    startDate: Date
+    endDate: Date
+    active: Boolean
+}
+############# INPUT #############

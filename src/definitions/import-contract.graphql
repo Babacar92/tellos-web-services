@@ -1,0 +1,61 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllImportContracts(
+        filter: ImportContractFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): ImportContractPaginationResultPath
+    findOneImportContract(id: Int!): ImportContractType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createImportContract(data: ImportContractCreateInput): ImportContractType
+    updateImportContract(data: ImportContractUpdateInput): ImportContractType
+    removeImportContract(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type ImportContractType {
+    id: Int
+    file: UploadType
+    employee: Employee
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type ImportContractPaginationResultPath {
+    result: [ImportContractType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input ImportContractFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    employeeId: Int
+    employeeIds: [Int!]
+}
+
+input ImportContractCreateInput {
+    file: Upload
+    fileName: String
+}
+
+input ImportContractUpdateInput {
+    id: Int
+    file: Upload
+    fileName: String
+}
+############# INPUT #############

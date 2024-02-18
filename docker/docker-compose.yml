@@ -1,0 +1,116 @@
+version: '3.8'
+
+name: "tellos_webservice"
+
+services:
+
+  webservice:
+    container_name: ${WEBSERVICE_SERVICE_NAME}
+    image: ${WEBSERVICE_REGISTRY}:${WEBSERVICE_VERSION}
+    hostname: webservice
+    domainname: tellos.fr
+    build:
+      target: ${WEBSERVICE_BUILD_TARGET}
+      context: ${WEBSERVICE_BUILD_CONTEXT}
+      dockerfile: ${WEBSERVICE_BUILD_DOCKERFILE}
+      args:
+        - APP_NAME=${WEBSERVICE_NAME}
+        - NODE_VERSION=${WEBSERVICE_NODE_VERSION}
+        - WORKDIR=${WEBSERVICE_WORKDIR}
+        - NEST_CLI_VERSION=${WEBSERVICE_CLI_VERSION}
+        - TYPEORM_CLI_VERSION=${WEBSERVICE_TYPEORM_CLI_VERSION}
+        - TS_NODE_CLI_VERSION=${WEBSERVICE_TS_NODE_CLI_VERSION}
+        - GIT_CONFIG_EMAIL=${GIT_CONFIG_EMAIL}
+        - GIT_CONFIG_NAME=${GIT_CONFIG_NAME}
+        - ORMCONFIG_FILE=${WEBSERVICE_ORMCONFIG_FILE}
+    stdin_open: true
+    environment:
+      # DB DEFAULT CONFIG
+      - DB_MIGRATION_TABLE_NAME=${WEBSERVICE_DB_MIGRATION_TABLE_NAME}
+      - DB_TABLE_PREFIX=${WEBSERVICE_DB_TABLE_PREFIX}
+      - DB_SYNC=${WEBSERVICE_DB_SYNC}
+      - DB_LOGGING=${WEBSERVICE_DB_LOGGING}
+      - PSQL_DB_CONN_NAME=${WEBSERVICE_PSQL_DB_CONN_NAME}
+      - MONGODB_DB_CONN_NAME=${WEBSERVICE_MONGODB_DB_CONN_NAME}
+      # PSQL CONFIG
+      - PSQL_HOST=${PSQL_SERVICE_NAME}
+      - PSQL_PORT=5432
+      - PSQL_SCHEMA=${PSQL_SCHEMA}
+      - PSQL_DB_NAME=${WEBSERVICE_DB_NAME}
+      - PSQL_USER=${PSQL_USER}
+      - PSQL_PASSWORD=${PSQL_PASSWORD}
+      # MONGO DB
+      - MONGODB_HOST=${MONGODB_SERVICE_NAME}
+      - MONGODB_PORT=27017
+      - MONGODB_DB_NAME=${WEBSERVICE_MONGODB_NAME}
+      - MONGODB_USERNAME=${MONGODB_USERNAME}
+      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+      - API_HASH=${WEBSERVICE_API_HASH}
+      - SOURCE_CODE=${WEBSERVICE_SOURCE_CODE}
+      - ORMCONFIG_FILE=${WEBSERVICE_ORMCONFIG_FILE}
+      - TZ=${CONTAINER_TIMEZONE}
+    volumes:
+      - ${WEBSERVICE_BUILD_CONTEXT}:${WEBSERVICE_WORKDIR}
+
+  postgresql:
+    container_name: ${PSQL_SERVICE_NAME}
+    image: postgres:${PSQL_VERSION}
+    restart: always
+    stdin_open: true
+    environment:
+      - POSTGRES_USER=${PSQL_USER}
+      - POSTGRES_PASSWORD=${PSQL_PASSWORD}
+      - TZ=${CONTAINER_TIMEZONE}
+    ports:
+      - ${PSQL_PORT}:5432
+    volumes:
+      - tellos_ws_psql_data:/var/lib/postgresql/data
+      - ./pg-add-extensions.sh:/docker-entrypoint-initdb.d/pg-add-extensions.sh
+
+  mongodb:
+    container_name: ${MONGODB_SERVICE_NAME}
+    image: mongo:${MONGODB_VERSION}
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
+      - TZ=${CONTAINER_TIMEZONE}
+    volumes:
+      - tellos_ws_mongodb_data:/data/db
+
+  mongodb-express:
+    container_name: ${MONGODB_EXPRESS_SERVICE_NAME}
+    image: mongo-express:latest
+    restart: always
+    ports:
+      - ${MONGODB_EXPRESS_PORT}:8081
+    depends_on:
+      - mongodb
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGODB_ROOT_USERNAME}
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGODB_ROOT_PASSWORD}
+      - ME_CONFIG_BASICAUTH_USERNAME=${MONGODB_AUTH_USERNAME}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${MONGODB_AUTH_PASSWORD}
+      - ME_CONFIG_SITE_BASEURL=${MONGODB_SITE_BASEURL}
+      - ME_CONFIG_MONGODB_URL=mongodb://${MONGODB_ROOT_USERNAME}:${MONGODB_ROOT_PASSWORD}@${MONGODB_SERVICE_NAME}:27017/
+      - TZ=${CONTAINER_TIMEZONE}
+
+  caddy:
+    container_name: ${CADDY_SERVICE_NAME}
+    image: caddy:${CADDY_VERSION}
+    stdin_open: true
+    ports:
+      - ${WEBSERVICE_PORT}:80
+    environment:
+      - WEBSERVICE_HOST=${WEBSERVICE_SERVICE_NAME}:3000
+      - TZ=${CONTAINER_TIMEZONE}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - tellos_ws_caddy_data:/data
+      - tellos_ws_caddy_config:/config
+
+volumes:
+  tellos_ws_psql_data: {}
+  tellos_ws_mongodb_data: {}
+  tellos_ws_caddy_data: {}
+  tellos_ws_caddy_config: {}

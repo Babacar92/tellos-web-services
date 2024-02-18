@@ -1,0 +1,98 @@
+############# QUERY #############
+type Query {
+    findAllSupplierBillings(
+        filter: SupplierBillingFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): SupplierBillingsResponse
+    findOneSupplierBillingBySupplierId(supplierId: Int!): SupplierBilling
+    findOneSupplierBilling(id: Int!): SupplierBilling
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    # createSupplierBilling(data: SupplierBillingCreateInput): SupplierBilling
+    updateSupplierBilling(data: SupplierBillingUpdateInput): SupplierBilling
+    # removeSupplierBilling(data: RemoveItemInput): Boolean
+}
+
+type SupplierBilling {
+    id: Int!
+    supplier: Supplier
+    login: LoginEntity
+    taxCode: String
+    regulationCode: String
+    currency: SupplierCurrencyEnum
+    rib: String
+    billingAddress: String
+    iban: String
+    bic: String
+    discountRate: Float
+    bankRate: Float
+    minOrder: Float
+    conditions: SupplierConditionEnum
+    deliveryMode: SupplierDeliveryModeEnum
+    creditInsurer: Boolean
+    insurerName: String
+    intraGroup: Boolean
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type SupplierBillingsResponse {
+    result: [SupplierBilling!]
+    pagination: PaginationType
+}
+
+############# INPUT #############
+input SupplierBillingFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    supplier: Int
+    loginId: Int
+}
+
+input SupplierBillingCreateInput {
+    supplier: Int!
+    taxCode: String
+    regulationCode: String
+    currency: SupplierCurrencyEnum
+    rib: String
+    billingAddress: String
+    iban: String
+    bic: String
+    discountRate: Float
+    bankRate: Float
+    minOrder: Float
+    conditions: SupplierConditionEnum
+    deliveryMode: SupplierDeliveryModeEnum
+    creditInsurer: Boolean
+    insurerName: String
+    intraGroup: Boolean
+}
+
+input SupplierBillingUpdateInput {
+    id: Int!
+    supplier: Int!
+    taxCode: String
+    regulationCode: String
+    currency: SupplierCurrencyEnum
+    rib: String
+    billingAddress: String
+    iban: String
+    bic: String
+    discountRate: Float
+    bankRate: Float
+    minOrder: Float
+    conditions: SupplierConditionEnum
+    deliveryMode: SupplierDeliveryModeEnum
+    creditInsurer: Boolean
+    insurerName: String
+    intraGroup: Boolean
+}

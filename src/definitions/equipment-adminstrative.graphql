@@ -1,0 +1,86 @@
+scalar Date
+############# QUERY #############
+type Query {
+    findOneEquipmentAdministrative(
+        equipmentParkId: Int!
+    ): EquipmentAdministrative
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    updateEquipmentAdministrative(
+        data: UpdateEquipmentAdministrativeInput
+    ): EquipmentAdministrative
+}
+############# MUTATION #############
+
+############# TYPE #############
+type EquipmentAdministrative {
+    id: Int!
+    equipmentPark: EquipmentPark!
+    ownerCompany: OwnerEntity
+    funding: EquipmentFunding
+    monthlyRent: Int
+    maintenanceRent: Float
+    maxAllowedKm: Float
+    contractStartDate: Date
+    contractEndDate: Date
+    buyBackValue: Float
+    immobilizationCode: String
+    exitType: String
+    mutationDate: Date
+    sellType: String
+    customerAsCustomer: CustomerType
+    customerAsEntity: EntityType
+    sellingPrice: Float
+    waitingForRelease: Boolean
+    geolocationBoxNumber: String
+    geolocationBoxMonthlyCost: Float
+    geolocationContractStartDate: Date
+    geolocationContractEndDate: Date
+    totalCard: String
+    angoPASS: String
+    carFleetInsurance: Boolean
+    machineBreakdownInsurance: Boolean
+    useRate: Float
+    nbHoursEntered: Float
+    usersToNotify: [Employee]
+    comment: String
+    breakEvent: Int
+}
+
+input UpdateEquipmentAdministrativeInput {
+    id: Int!
+    ownerCompany: Int
+    funding: Int
+    monthlyRent: Int
+    maintenanceRent: Float
+    maxAllowedKm: Float
+    contractStartDate: Date
+    contractEndDate: Date
+    buyBackValue: Float
+    immobilizationCode: String
+    exitType: String
+    mutationDate: Date
+    sellType: String
+    customerAsCustomer: Int
+    customerAsEntity: Int
+    sellingPrice: Float
+    waitingForRelease: Boolean
+    geolocationBoxNumber: String
+    geolocationBoxMonthlyCost: Float
+    geolocationContractStartDate: Date
+    geolocationContractEndDate: Date
+    totalCard: String
+    angoPASS: String
+    carFleetInsurance: Boolean
+    machineBreakdownInsurance: Boolean
+    useRate: Float
+    nbHoursEntered: Float
+    usersToNotify: [Int]
+    comment: String
+    breakEvent: Int
+}
+
+############# INPUT #############

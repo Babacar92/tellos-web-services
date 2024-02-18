@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #ebebed;">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body style="background-color: #ebebed;">
+        <table border="0" align="center">
+            <caption>
+                <h2>
+                    Documents
+                </h2>
+            </caption>
+            <tr>
+                    {{#if header.createdAt_c}}<th bgcolor="#fff" height="50px">{{header.createdAt_c}}</th>{{/if}}
+                    {{#if header.title_c}}<th bgcolor="#fff" height="50px">{{header.title_c}}</th>{{/if}}
+                    {{#if header.category_c}}<th bgcolor="#fff" height="50px">{{header.category_c}}</th>{{/if}}
+                    {{#if header.createdBy_c}}<th bgcolor="#fff" height="50px">{{header.createdBy_c}}</th>{{/if}}
+            </tr>
+            {{#each message}}
+                <tr>
+                    {{#if CREATEDAT}}<td bgcolor="#f6f8fc" height="50px" align="center">{{createdAt}}</td>{{/if}}
+                    {{#if TITLE}}<td bgcolor="#f6f8fc" height="50px" align="center">{{title}}</td>{{/if}}
+                    {{#if CATEGORY}}<td bgcolor="#f6f8fc" height="50px" align="center">{{category}}</td>{{/if}}
+                    {{#if CREATEDBY}}<td bgcolor="#f6f8fc" height="50px" align="center">{{createdBy}}</td>{{/if}}
+                </tr>
+            {{/each}}
+        </table>
+
+  </body>
+</html>

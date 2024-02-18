@@ -1,0 +1,9 @@
+.env*
+public/upload/
+node_modules/
+translations/
+dist/
+test/
+wb*/
+insomnia/
+.cache/

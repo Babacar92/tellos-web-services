@@ -1,0 +1,68 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllQualificationsNames(filter: QualificationNameFilterInput, sort: JSON, pagination: PaginationInput): QualificationNamePaginationResultType
+    findOneQualificationName(id: Int!): QualificationNameType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createQualificationName(data: QualificationNameCreateInput): QualificationNameType
+    updateQualificationName(data: QualificationNameUpdateInput): QualificationNameType
+    removeQualificationName(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type QualificationNameType {
+    id: Int
+    name: String
+    type: QualificationTypeType
+    qualifications: [QualificationType!]
+    validity: Int
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type QualificationNamePaginationResultType {
+    result: [QualificationNameType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input QualificationNameFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    name: String
+    names: [String!]
+    validity: Int
+    validities: [Int!]
+    type: Int
+    types: [Int!]
+}
+
+input QualificationNameCreateInput {
+    name: String
+    type: Int
+    validity: Int
+    active: Boolean
+}
+
+input QualificationNameUpdateInput {
+    id: Int
+    name: String
+    type: Int
+    validity: Int
+    active: Boolean
+}
+############# INPUT #############

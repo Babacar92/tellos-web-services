@@ -1,0 +1,5 @@
+export enum MEDICAL_VISIT_STATUT {
+    POSITIVE = "POSITIVE",
+    NEGATIVE = "NEGATIVE",
+    PENDING = "PENDING"
+}

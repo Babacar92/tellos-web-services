@@ -1,0 +1,90 @@
+scalar Date
+scalar JSON
+scalar Upload
+
+############# QUERY #############
+type Query {
+    findAllCustomerTimelines(filter: CustomerTimelineFilterInput, sort: JSON, pagination: PaginationInput): CustomerTimelinePaginationResultType
+    findOneCustomerTimeline(id: Int!): CustomerTimelineType
+    customerTimelineCountByType(customerId: Int): JSON
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createCustomerTimeline(data: CustomerTimelineCreateInput): CustomerTimelineType
+    updateCustomerTimeline(data: CustomerTimelineUpdateInput): CustomerTimelineType
+    removeCustomerTimeline(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type CustomerTimelineType {
+    id: Int
+    customer: CustomerType
+    login: LoginEntity
+    file: UploadType
+    title: String
+    type: String
+    comment: String
+    dateFrom: Date
+    dateTo: Date
+    isTodo: Boolean
+    doneAt: Date
+    done: Boolean
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type CustomerTimelinePaginationResultType {
+    result: [CustomerTimelineType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input CustomerTimelineFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    customerId: Int
+    customerIds: [Int]
+    type: String
+    types: [String!]
+    isTodo: Boolean
+    done: Boolean
+    dateFrom: Date
+    dateTo: Date
+}
+
+input CustomerTimelineCreateInput {
+    customer: Int
+    file: Upload
+    title: String
+    type: String
+    comment: String
+    dateFrom: Date
+    dateTo: Date
+    isTodo: Boolean
+    active: Boolean
+}
+
+input CustomerTimelineUpdateInput {
+    id: Int
+    customer: Int
+    file: Upload
+    title: String
+    type: String
+    comment: String
+    dateFrom: Date
+    dateTo: Date
+    isTodo: Boolean
+    done: Boolean
+    active: Boolean
+}
+############# INPUT #############

@@ -1,0 +1,43 @@
+type Query {
+    findAllPaginatedEquipmentAssignments(
+        filter: EquipmentAssignmentFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): EquipmentAssignmentPaginationResult
+}
+
+type Mutation {
+    createEquipmentAssignment(
+        data: CreateEquipmentAssignmentInput
+    ): EquipmentAssignment
+}
+
+type EquipmentAssignment {
+    id: ID!
+    equipmentPark: EquipmentPark!
+    employee: Employee!
+    startDate: Date!
+    endDate: Date
+}
+
+type EquipmentAssignmentPaginationResult {
+    result: [EquipmentAssignment!]
+    pagination: PaginationType
+}
+
+input CreateEquipmentAssignmentInput {
+    equipmentPark: Int!
+    employee: Int!
+    startDate: Date!
+}
+
+input EquipmentAssignmentFilterInput {
+    id: Int
+    ids: [Int!]
+    equipmentParkId: Int
+    equipmentParkIds: [Int!]
+    employeeId: Int
+    employeeIds: [Int!]
+    startDate: Date
+    endDate: Date
+}

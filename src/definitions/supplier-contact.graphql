@@ -1,0 +1,65 @@
+############# QUERY #############
+type Query {
+    findAllSupplierContacts(filter: SupplierContactFilterArgs ,sort: JSON ,pagination: PaginationInput): SupplierContactsResponse
+    findOneSupplierContact(id: Int!): SupplierContact
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createSupplierContact(data: SupplierContactCreateInput): SupplierContact
+    updateSupplierContact(data: SupplierContactUpdateInput): SupplierContact
+    removeSupplierContact(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type SupplierContact {
+    id: Int
+    supplier: Supplier
+    name: String
+    service: String
+    phone: String
+    mobilePhone: String
+    email: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type SupplierContactsResponse {
+    result: [SupplierContact!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input SupplierContactFilterArgs {
+    supplier: Int
+    active: Boolean
+}
+
+input SupplierContactCreateInput {
+    supplier: Int!
+    name: String!
+    service: String
+    phone: String
+    mobilePhone: String
+    email: String
+    active: Boolean
+}
+
+input SupplierContactUpdateInput {
+    id: Int!
+    name: String!
+    supplier: Int!
+    service: String
+    phone: String
+    mobilePhone: String
+    email: String
+    active: Boolean
+}
+############# INPUT #############

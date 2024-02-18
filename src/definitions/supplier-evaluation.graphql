@@ -1,0 +1,76 @@
+scalar Date
+scalar JSON
+scalar Upload
+
+############# QUERY #############
+type Query {
+    findAllSupplierEvaluations(
+        filter: SupplierEvaluationFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): SupplierEvaluationsResponse
+    findOneSupplierEvaluation(id: Int!): SupplierEvaluation
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createSupplierEvaluation(
+        data: SupplierEvaluationCreateInput
+    ): SupplierEvaluation
+    updateSupplierEvaluation(
+        data: SupplierEvaluationUpdateInput
+    ): SupplierEvaluation
+    removeSupplierEvaluation(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type SupplierEvaluation {
+    id: Int
+    supplier: Supplier
+    login: LoginEntity
+    note: Int
+    comment: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type SupplierEvaluationsResponse {
+    result: [SupplierEvaluation!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input SupplierEvaluationFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    supplier: Int
+    loginId: Int
+    note: Int
+    notes: [Int!]
+    startDate: Date
+    endDate: Date
+}
+
+input SupplierEvaluationCreateInput {
+    supplier: Int!
+    note: Int!
+    comment: String
+    active: Boolean
+}
+
+input SupplierEvaluationUpdateInput {
+    id: Int!
+    note: Int!
+    supplier: Int!
+    comment: String
+    active: Boolean
+}
+############# INPUT #############

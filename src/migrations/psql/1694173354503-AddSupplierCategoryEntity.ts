@@ -1,0 +1,16 @@
+import { MigrationInterface, QueryRunner } from "typeorm";
+import { TransactionnalMigration } from '../../libs/databases/decorators/classes/TransactionnalMigration';
+
+@TransactionnalMigration()
+export class AddSupplierCategoryEntity1694173354503 implements MigrationInterface {
+    name = 'AddSupplierCategoryEntity1694173354503'
+
+    public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`CREATE TABLE "tellos_supplier_category" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, "active" boolean NOT NULL DEFAULT false, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "deleted_at" TIMESTAMP, "created_by" character varying(255), "updated_by" character varying(255), CONSTRAINT "UQ_89229a2bf70233a210fd9a5bd76" UNIQUE ("name", "deleted_at"), CONSTRAINT "PK_522a7796ab3864346048fcb8059" PRIMARY KEY ("id"))`);
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`DROP TABLE "tellos_supplier_category"`);
+    }
+
+}

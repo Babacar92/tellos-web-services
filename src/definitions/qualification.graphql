@@ -1,0 +1,103 @@
+scalar Date
+scalar JSON
+scalar Upload
+
+############# QUERY #############
+type Query {
+    findAllQualifications(
+        filter: QualificationFilterInput
+        sort: JSON
+        pagination: PaginationInput
+    ): QualificationPaginationResultType
+    findOneQualification(id: Int!): QualificationType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createQualification(data: QualificationCreateInput): QualificationType
+    updateQualification(data: QualificationUpdateInput): QualificationType
+    removeQualification(data: RemoveItemInput): Boolean
+    validateQualification(id: Int): QualificationType
+    unValidateQualification(id: Int): QualificationType
+}
+############# MUTATION #############
+
+############# TYPE #############
+type QualificationType {
+    id: Int
+    entity: EntityType
+    department: DepartmentType
+    employee: Employee
+    type: QualificationTypeType
+    name: QualificationNameType
+    document: UploadType
+    number: String
+    delivery: Date
+    deadline: Date
+    validity: Int
+    comment: String
+    fromMyAccount: Boolean
+    status: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type QualificationPaginationResultType {
+    result: [QualificationType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+############# INPUT #############
+input QualificationFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    entity: Int
+    entities: [Int!]
+    department: Int
+    departments: [Int!]
+    type: Int
+    types: [Int!]
+    name: Int
+    names: [Int!]
+    employeeId: Int
+    employeeIds: [Int!]
+    sexe: String
+    sexes: [String!]
+}
+
+input QualificationCreateInput {
+    employee: Int
+    name: Int
+    type: Int
+    delivery: Date
+    number: String
+    document: Upload
+    documentName: String
+    comment: String
+    fromMyAccount: Boolean
+    status: String
+    active: Boolean
+}
+
+input QualificationUpdateInput {
+    id: Int
+    employee: Int
+    name: Int
+    type: Int
+    delivery: Date
+    number: String
+    document: Upload
+    documentName: String
+    comment: String
+    fromMyAccount: Boolean
+    status: String
+    active: Boolean
+}
+############# INPUT #############

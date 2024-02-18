@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #ebebed;">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body style="background-color: #ebebed;">
+        <table border="0" align="center">
+            <caption>
+                <h1>
+                    Liste des codes de section
+                </h1>
+            </caption>
+            <tr>
+                    {{#if header.code_c}}<th bgcolor="#fff" height="50px">{{header.code_c}}</th>{{/if}}
+                    {{#if header.designation_c}}<th bgcolor="#fff" height="50px">{{header.designation_c}}</th>{{/if}}
+                    {{#if header.purchaseAccount_c}}<th bgcolor="#fff" height="50px">{{header.purchaseAccount_c}}</th>{{/if}}
+                    {{#if header.inventoryChange_c}}<th bgcolor="#fff" height="50px">{{header.inventoryChange_c}}</th>{{/if}}
+            </tr>
+            {{#each message}}
+                <tr>
+                    {{#if CODE}}<td bgcolor="#f6f8fc" height="50px" align="center">{{code}}</td>{{/if}}
+                    {{#if DESIGNATION}}<td bgcolor="#f6f8fc" height="50px" align="center">{{designation}}</td>{{/if}}
+                    {{#if PUA}}<td bgcolor="#f6f8fc" height="50px" align="center">{{stock}}</td>{{/if}}
+                    {{#if INC}}<td bgcolor="#f6f8fc" height="50px" align="center">{{accounts}}</td>{{/if}}
+                </tr>
+            {{/each}}
+        </table>
+
+  </body>
+</html>

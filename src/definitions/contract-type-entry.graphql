@@ -1,0 +1,57 @@
+scalar Date
+scalar JSON
+
+############# QUERY #############
+type Query {
+    findAllContractTypeEntries(filter: ContractTypeEntryFilterInput, sort: JSON, pagination: PaginationInput): ContractTypeEntryPaginationResultType
+    findOneContractTypeEntry(id: Int!): ContractTypeEntryType
+}
+############# QUERY #############
+
+############# MUTATION #############
+type Mutation {
+    createContractTypeEntry(data: ContractTypeEntryCreateInput): ContractTypeEntryType
+    updateContractTypeEntry(data: ContractTypeEntryUpdateInput): ContractTypeEntryType
+    removeContractTypeEntry(data: RemoveItemInput): Boolean
+}
+############# MUTATION #############
+
+############# TYPE #############
+type ContractTypeEntryType {
+    id: Int
+    title: String
+    active: Boolean
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: String
+    updatedBy: String
+}
+
+type ContractTypeEntryPaginationResultType {
+    result: [ContractTypeEntryType!]
+    pagination: PaginationType
+}
+############# TYPE #############
+
+
+############# INPUT #############
+input ContractTypeEntryFilterInput {
+    id: Int
+    ids: [Int!]
+    search: String
+    title: String
+    titles: [String!]
+}
+
+input ContractTypeEntryCreateInput {
+    title: String
+    active: Boolean
+}
+
+input ContractTypeEntryUpdateInput {
+    id: Int
+    title: String
+    active: Boolean
+}
+############# INPUT #############
